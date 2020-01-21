@@ -34,10 +34,11 @@ namespace Launchpad.Controllers
             return View(vm);
         }
 
-        public ActionResult LaunchCDM()
+        public ActionResult LaunchCDM(string a)
         {
             SearchViewModel vm = new SearchViewModel();
             ViewBag.Brands = GetBrands();
+            ViewBag.a = a.ToString();
             return View(vm);
         }
         [HttpGet]

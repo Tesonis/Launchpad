@@ -75,76 +75,78 @@
                         </div>
                     }
                     <hr />
-                    <table class="table table-bordered datatable" id="dataTable-record">
-                        <!--Filter by Account-->
-                        <!--Filter by Banner-->
-                        <!--Filter by Brand-->
-                        <thead class="thead-light">
-                            <tr>
-                                <th width="50">Item Number</th>
-                                <th hidden>BDM</th>
-                                <th hidden>Brand</th>
-                                <th hidden>CDM</th>
-                                <th>Account</th>
-                                <th>Banner</th>
-                                <th>Item Description</th>
-                                <th>Launch Date</th>
-                                <th>Launch Comments</th>
-                                <th>Status</th>
-                                <th>Last Updated</th>
-                                <th>Follow-up Date</th>
-                                <th>Status Comments</th>
-                                <th hidden>Category</th>
-                                <th hidden>POG Review Date</th>
-                                <th hidden>POG Drop Date</th>
-                                <th hidden>Cat. Manager / Contact</th>
-                                <th hidden>Competitive Info</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><a href="@Url.Action("ItemReport", "Home")">90001</a></td>
-                                <td hidden>Keira Hall</td>
-                                <td hidden>Kikkoman</td>
-                                <td hidden>Cathy Pye</td>
-                                <td>Loblaws</td>
-                                <td>Nofrills</td>
-                                <td>Kikkoman Soy Sauce 255ml</td>
-                                <td>01/01/2020</td>
-                                <td><textarea rows="2" class="form-control">Example Launch Comment</textarea></td>
-                                <td>Pending</td>
-                                <td>01/15/2020</td>
-                                <td>-</td>
-                                <td><textarea rows="2" class="form-control">Example Status Comment</textarea></td>
-                                <td hidden>Example Category</td>
-                                <td hidden>02/01/2020</td>
-                                <td hidden>02/02/2020</td>
-                                <td hidden>Terry Huang - Example Contact Info</td>
-                                <td hidden>Example Competitive Info</td>
-                            </tr>
-                            <tr>
-                                <td><a href="@Url.Action("ItemReport", "Home")">90002</a></td>
-                                <td hidden>Keira Hall</td>
-                                <td hidden>Kikkoman</td>
-                                <td hidden>Cathy Pye</td>
-                                <td>Loblaws</td>
-                                <td>Nofrills</td>
-                                <td>Kikkoman Soy Sauce 500ml</td>
-                                <td>01/01/2020</td>
-                                <td><textarea rows="2" class="form-control">Example Launch Comment</textarea></td>
-                                <td>Pending</td>
-                                <td>01/15/2020</td>
-                                <td>-</td>
-                                <td><textarea rows="2" class="form-control">Example Status Comment</textarea></td>
-                                <td hidden>Example Category</td>
-                                <td hidden>02/01/2020</td>
-                                <td hidden>02/02/2020</td>
-                                <td hidden>Terry Huang - Example Contact Info</td>
-                                <td hidden>Example Competitive Info</td>
-                            </tr>
+                    <div class="table-responsive">
+                        <table class="table table-bordered datatable" id="dataTable-record">
+                            <!--Filter by Account-->
+                            <!--Filter by Banner-->
+                            <!--Filter by Brand-->
+                            <thead class="thead-light">
+                                <tr>
+                                    <th width="50">Item #</th>
+                                    <th hidden>BDM</th>
+                                    <th hidden>Brand</th>
+                                    <th hidden>CDM</th>
+                                    <th>Account</th>
+                                    <th>Banner</th>
+                                    <th>Item Description</th>
+                                    <th>Launch Date</th>
+                                    <th>Launch Comments</th>
+                                    <th>Status</th>
+                                    <th>Last Updated</th>
+                                    <th hidden>Follow-up Date</th>
+                                    <th>Status Comments</th>
+                                    <th hidden>Category</th>
+                                    <th hidden>POG Review Date</th>
+                                    <th hidden>POG Drop Date</th>
+                                    <th hidden>Cat. Manager / Contact</th>
+                                    <th hidden>Competitive Info</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="@Url.Action("ItemReport", "Home")">90001</a></td>
+                                    <td hidden>Keira Hall</td>
+                                    <td hidden>Kikkoman</td>
+                                    <td hidden>Cathy Pye</td>
+                                    <td>Loblaws</td>
+                                    <td>Nofrills</td>
+                                    <td>Kikkoman Soy Sauce 255ml</td>
+                                    <td>01/01/2020</td>
+                                    <td><textarea rows="2" class="form-control">Example Launch Comment</textarea></td>
+                                    <td>Pending</td>
+                                    <td>01/15/2020</td>
+                                    <td hidden>-</td>
+                                    <td><textarea rows="2" class="form-control">Example Status Comment</textarea></td>
+                                    <td hidden>Example Category</td>
+                                    <td hidden>02/01/2020</td>
+                                    <td hidden>02/02/2020</td>
+                                    <td hidden>Terry Huang - Example Contact Info</td>
+                                    <td hidden>Example Competitive Info</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="@Url.Action("ItemReport", "Home")">90002</a></td>
+                                    <td hidden>Keira Hall</td>
+                                    <td hidden>Kikkoman</td>
+                                    <td hidden>Cathy Pye</td>
+                                    <td>Loblaws</td>
+                                    <td>Nofrills</td>
+                                    <td>Kikkoman Soy Sauce 500ml</td>
+                                    <td>01/01/2020</td>
+                                    <td><textarea rows="2" class="form-control">Example Launch Comment</textarea></td>
+                                    <td>Pending</td>
+                                    <td>01/15/2020</td>
+                                    <td hidden>-</td>
+                                    <td><textarea rows="2" class="form-control">Example Status Comment</textarea></td>
+                                    <td hidden>Example Category</td>
+                                    <td hidden>02/01/2020</td>
+                                    <td hidden>02/02/2020</td>
+                                    <td hidden>Terry Huang - Example Contact Info</td>
+                                    <td hidden>Example Competitive Info</td>
+                                </tr>
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                     <hr />
                     <button id="btn-itemrecordexcel" class="btn btn-block btn-outline-success" onclick="$(this).parent().find('.buttons-excel').click()">Export To Excel</button>
                 </div>

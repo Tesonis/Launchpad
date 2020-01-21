@@ -80,6 +80,78 @@
 
                 </div>
                 <hr />
+                @if (ViewBag.a == "launch")
+                {
+                    <div id="brandtable">
+                        <table id="table_branditems" class="table table-bordered datatable">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th width="50"><button class="btn btn-primary btn-sm">Select All</button></th>
+                                    <th width="50">Item #</th>
+                                    <th>Item Description</th>
+                                    <th>Account</th>
+                                    <th>Banner</th>
+                                    <th>Unit Size</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a class="group-item"><i class="fa fa-times-circle-o"></i></a></td>
+                                    <td>57118</td>
+                                    <td>Kikkoman Tempura Batter Mix 255</td>
+                                    <td>255 GR</td>
+                                    <td>Loblaws</td>
+                                    <td>Nofrills</td>
+                                    <td>Not VOR</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
+                                    <td>57118</td>
+                                    <td>Kikkoman Tempura Batter Mix</td>
+                                    <td>255 GR</td>
+                                    <td>Sobeys</td>
+                                    <td>-</td>
+                                    <td>Not Presented</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
+                                    <td>57118</td>
+                                    <td>Kikkoman Tempura Batter Mix</td>
+
+                                    <td>255 GR</td>
+                                    <td>Metro</td>
+                                    <td>-</td>
+                                    <td>Not Presented</td>
+                                </tr>
+                                
+                                
+                                <tr>
+                                    <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
+                                    <td>90003</td>
+                                    <td>Kikkoman Soy Sauce</td>
+                                    <td>750 ml</td>
+                                    <td>Loblaws</td>
+                                    <td>Nofrills</td>
+                                    <td>Not Presented</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
+                                    <td>90003</td>
+                                    <td>Kikkoman Soy Sauce</td>
+                                    <td>750 ml</td>
+                                    <td>Loblaws</td>
+                                    <td>Fortinos</td>
+                                    <td>Not Presented</td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                        <hr />
+                    </div>
+                }
+                else if (ViewBag.a == "update" || ViewBag.a == null || ViewBag.a == "")
+                {
                 <div id="brandtable">
                     <table id="table_branditems" class="table table-bordered datatable">
                         <thead class="thead-light">
@@ -94,36 +166,9 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
                             <tr>
-                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
-                                <td>57118</td>
-                                <td>Kikkoman Tempura Batter Mix 255</td>
-                                <td>255 GR</td>
-                                <td>Loblaws</td>
-                                <td>Nofrills</td>
-                                <td>Not VOR</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
-                                <td>57118</td>
-                                <td>Kikkoman Tempura Batter Mix</td>
-                                <td>255 GR</td>
-                                <td>Sobeys</td>
-                                <td>-</td>
-                                <td>Not Presented</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
-                                <td>57118</td>
-                                <td>Kikkoman Tempura Batter Mix</td>
-
-                                <td>255 GR</td>
-                                <td>Metro</td>
-                                <td>-</td>
-                                <td>Not Presented</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
                                 <td>57118</td>
                                 <td>Kikkoman Tempura Batter Mix</td>
                                 <td>255 GR</td>
@@ -133,7 +178,7 @@
                                 <td>Initiated Contact</td>
                             </tr>
                             <tr>
-                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
                                 <td>57129</td>
                                 <td>Kikkoman Tempura Batter Mix 500</td>
                                 <td>255 GR</td>
@@ -142,26 +187,9 @@
 
                                 <td>Pending</td>
                             </tr>
+                            
                             <tr>
-                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
-                                <td>90001</td>
-                                <td>Kikkoman Soy Sauce</td>
-                                <td>255 GR</td>
-                                <td>Loblaws</td>
-                                <td>Nofrills</td>
-                                <td>Not Presented</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
-                                <td>90001</td>
-                                <td>Kikkoman Soy Sauce</td>
-                                <td>255 GR</td>
-                                <td>Loblaws</td>
-                                <td>Fortinos</td>
-                                <td>Not Presented</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
                                 <td>57118</td>
                                 <td>Kikkoman Tempura Batter Mix</td>
                                 <td>255 GR</td>
@@ -173,9 +201,11 @@
                     </table>
                     <hr />
                 </div>
+                }
                 <div class="row py-5 col-12 mx-auto">
                     <button class="btn btn-lg btn-outline-success btn-block" onclick="Step2()">Next Step</button>
                 </div>
+                
             </section>
             <section id="step2" class="mt-3 step d-none">
                 <!-- PO Details -->
@@ -214,24 +244,28 @@
 
                 </div>
                 <hr />
-                <div id="launchtable">
+                <div id="launchtable" class="table-responsive">
                     <table id="table_groupitems" class="table table-bordered datatable">
                         <thead class="thead-light">
                             <tr>
                                 <th width="50"><button class="btn btn-primary btn-sm">Select All</button></th>
-                                <th>Item Number</th>
+                                <th width="50">Item #</th>
                                 <th>Item Description</th>
-                                <th>Unit Size</th>
-                                <th>Status</th>
-                                <th>Follow Up Date</th>
-                                <th>Comment</th>
+                                <th width="100">Account</th>
+                                <th width="100">Banner</th>
+                                <th width="100">Unit Size</th>
+                                <th width="200">Status</th>
+                                <th width="125">Follow Up Date</th>
+                                <th width="300">Comment</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
                                 <td>57118</td>
                                 <td>Kikkoman Tempura Batter Mix</td>
+                                <td>Loblaws</td>
+                                <td>Fortinos</td>
                                 <td>255 GR</td>
                                 <td>
                                     <select class="form-control">
@@ -252,9 +286,11 @@
                                 <td><div><textarea class="form-control commenttable" rows="2" id="comment1"></textarea></div></td>
                             </tr>
                             <tr>
-                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
                                 <td>57112</td>
                                 <td>Kikkoman Tempura Batter Mix</td>
+                                <td>Loblaws</td>
+                                <td>Fortinos</td>
                                 <td>255 GR</td>
                                 <td>
                                     <select class="form-control">
@@ -275,9 +311,11 @@
                                 <td><div><textarea class="form-control commenttable" rows="2" id="comment2"></textarea></div></td>
                             </tr>
                             <tr>
-                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
                                 <td>57117</td>
                                 <td>Kikkoman Tempura Batter Mix</td>
+                                <td>Loblaws</td>
+                                <td>Fortinos</td>
                                 <td>255 GR</td>
                                 <td>
                                     <select class="form-control">
@@ -298,9 +336,11 @@
                                 <td><div><textarea class="form-control commenttable" rows="2" id="comment3"></textarea></div></td>
                             </tr>
                             <tr>
-                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
                                 <td>57128</td>
                                 <td>Kikkoman Tempura Batter Mix</td>
+                                <td>Metro</td>
+                                <td>-</td>
                                 <td>255 GR</td>
                                 <td>
                                     <select class="form-control">
@@ -322,10 +362,12 @@
 
                             </tr>
                             <tr>
-                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
                                 <td>55342</td>
                                 <td>Kikkoman Tempura Batter Mix</td>
-                                <td>255 GR</td>
+                                <td>Metro</td>
+                                <td>-</td>
+                                <td>500 GR</td>
                                 <td>
                                     <select class="form-control">
                                         <option>Not VOR</option>
@@ -386,25 +428,29 @@
 
                 </div>
                 <hr />
-                <div id="launchtable">
+                <div id="launchtable" class="table-responsive">
                     <table id="table_groupitems" class="table table-bordered datatable">
                         <thead class="thead-light">
                             <tr>
                                 <th width="50"><button class="btn btn-primary btn-sm">Select All</button></th>
                                 <th>Item Description</th>
-                                <th>Unit Size</th>
-                                <th>Category</th>
-                                <th>POG Review Date</th>
-                                <th>POG Drop Date</th>
-                                <th>Contact Info</th>
-                                <th>Competitive Info</th>
+                                <th width="100">Unit Size</th>
+                                <th width="100">Account</th>
+                                <th width="100">Banner</th>
+                                <th width="150">Category</th>
+                                <th width="150">POG Review Date</th>
+                                <th width="150">POG Drop Date</th>
+                                <th width="300">Contact Info</th>
+                                <th width="300">Competitive Info</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
                                 <td>Kikkoman Tempura Batter Mix</td>
                                 <td>255 GR</td>
+                                <td>Metro</td>
+                                <td>-</td>
                                 <td><input type="text" class="form-control" /></td>
                                 <td><input type="date" class="form-control"></td>
                                 <td><input type="date" class="form-control"></td>

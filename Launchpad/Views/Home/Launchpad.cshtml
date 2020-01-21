@@ -20,6 +20,46 @@
             <section id="section_dash">
                 @if (ViewBag.role == "bdm" || ViewBag.role == "admin")
                 {
+                    <section id="section_review" class="mb-4 p-3 bg-white border">
+                        <div class="p-3 d-flex align-items-center">
+                            <i class="fa fa-exclamation bg-warning p-3 font-2xl mr-3"></i>
+                            <div>
+                                <div class="text-value-sm text-warning">Activity</div>
+                                @*<div class="text-muted text-uppercase font-weight-bold small">Income</div>*@
+                            </div>
+                        </div>
+                        <table class="table table-bordered datatable" id="table-tasks">
+                            <thead class="thead-light">
+                                <tr>
+
+                                    <th>Item #</th>
+                                    <th>Item Description</th>
+                                    <th>Account</th>
+                                    <th>Banner</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="@Url.Action("ItemReport", "Home")">90001</a></td>
+                                    <td>Kikkoman Soy Sauce 500ml</td>
+                                    <td>Loblaws</td>
+                                    <td>Fortinos</td>
+                                    <td><i class="fa fa-square text-primary"></i> Pending</td>
+                                    <td>01/05/20</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="@Url.Action("ItemReport", "Home")">90001</a></td>
+                                    <td>Kikkoman Soy Sauce 500ml</td>
+                                    <td>Loblaws</td>
+                                    <td>Nofrills</td>
+                                    <td><i class="fa fa-square text-primary"></i> Pending</td>
+                                    <td>01/14/20</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
@@ -41,6 +81,54 @@
                 }
                 @if (ViewBag.role == "cdm" || ViewBag.role == "admin")
                 {
+                    <section id="section_review" class="mb-4 p-3 bg-white border">
+                        <div class="p-3 d-flex align-items-center">
+                            <i class="fa fa-exclamation bg-warning p-3 font-2xl mr-3"></i>
+                            <div>
+                                <div class="text-value-sm text-warning">Activity</div>
+                                @*<div class="text-muted text-uppercase font-weight-bold small">Income</div>*@
+                            </div>
+                        </div>
+                        <table class="table table-bordered datatable" id="table-tasks">
+                            <thead class="thead-light">
+                                <tr>
+
+                                    <th>Item #</th>
+                                    <th>Item Description</th>
+                                    <th>Account</th>
+                                    <th>Banner</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="@Url.Action("ItemReport", "Home")">90001</a></td>
+                                    <td>Kikkoman Soy Sauce 255ml</td>
+                                    <td>Loblaws</td>
+                                    <td>Fortinos</td>
+                                    <td><i class="fa fa-square text-secondary"></i> Not Presented</td>
+                                    <td>01/05/20</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="@Url.Action("ItemReport", "Home")">90001</a></td>
+                                    <td>Kikkoman Soy Sauce 255ml</td>
+                                    <td>Loblaws</td>
+                                    <td>Nofrills</td>
+                                    <td><i class="fa fa-square text-info"></i> Initiated</td>
+                                    <td>01/14/20</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="@Url.Action("ItemReport", "Home")">90002</a></td>
+                                    <td>Kikkoman Soy Sauce 500ml</td>
+                                    <td>Loblaws</td>
+                                    <td>Nofrills</td>
+                                    <td><i class="fa fa-square text-primary"></i> Pending</td>
+                                    <td>01/14/20</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
@@ -50,8 +138,8 @@
                                         <div>
                                             <div class="text-value-sm text-success">CDM Action</div>
                                         </div>
-                                        <a href="@Url.Action("LaunchCDM", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)" class="btn btn-lg btn-success ml-auto">Launch New</a>
-                                        <a href="@Url.Action("LaunchCDM", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)" class="btn btn-lg btn-outline-success ml-3">Update Existing</a>
+                                        <a href="@Url.Action("LaunchCDM", null, new { a = "launch", controller = "Home" }, Request.Url.Scheme)" class="btn btn-lg btn-success ml-auto">Launch New</a>
+                                        <a href="@Url.Action("LaunchCDM", null, new { a = "update", controller = "Home" }, Request.Url.Scheme)" class="btn btn-lg btn-outline-success ml-3">Update Existing</a>
                                     </div>
                                 </div>
 
@@ -88,7 +176,11 @@
                 buttons: [
                     'excel'
                 ],
-                responsive: true
+                responsive: true,
+                "columnDefs": [
+                    { "orderable": false, "targets": [8,12] }
+                ],
+                "order": [[0, "asc"]]
             });
             $("#summary-total").text(summarytotalsku().toString());
             calcpercsummary();

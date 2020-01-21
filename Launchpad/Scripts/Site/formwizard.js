@@ -30,13 +30,11 @@ function Step4() {
 //script for grouping items
 var count = 1;
 $(".group-item").click(function () {
-    if (!$(this).children().hasClass('fa-check-circle-o')) {
-        $(this).parent().parent().toggleClass("table-info");
-    }
-    if ($("#step2 .table-info").length > 0) {
-        $("#step2applytoall").prop("disabled", false);
-    }
+    $(this).parent().parent().toggleClass("table-info");
+    $(this).children().toggleClass("fa-circle");
+
 });
+
 function scrolltotop() {
     $(window).scrollTop(0);
 }
