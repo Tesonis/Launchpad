@@ -1,0 +1,229 @@
+﻿
+@{
+    ViewBag.Title = "Launchpad Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Launchpad.Models.ItemViewModels.SearchViewModel
+@Styles.Render("~/Content/bs-select")
+@Styles.Render("~/Content/css")
+@Styles.Render("~/Content/Site.css")
+<link href="~/Content/Site.css" rel="stylesheet" />
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page"><h5 class="text-muted">Launchpad</h5></li>
+    </ol>
+</nav>
+<div class="py-2">
+    <div class="row">
+        <div class="col-12">
+            <section id="section_dash">
+                @if (ViewBag.role == "bdm" || ViewBag.role == "admin")
+                {
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body ">
+                                    <div class="p-3 d-flex align-items-center">
+                                        <i class="fa fa-barcode bg-primary p-3 font-2xl mr-3"></i>
+                                        <div>
+                                            <div class="text-value-sm text-primary">BDM Launch</div>
+
+                                        </div>
+                                        <a href="@Url.Action("LaunchBDM", null, new { a = "create", controller = "Home" }, Request.Url.Scheme)" class="btn btn-lg btn-primary ml-auto">Launch New</a>
+                                        <a href="@Url.Action("LaunchBDM", null, new { a = "update", controller = "Home" }, Request.Url.Scheme)" class="btn btn-lg btn-outline-primary ml-3">Update Existing</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (ViewBag.role == "cdm" || ViewBag.role == "admin")
+                {
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body ">
+                                    <div class="p-3 d-flex align-items-center">
+                                        <i class="fa fa-handshake-o bg-success p-3 font-2xl mr-3"></i>
+                                        <div>
+                                            <div class="text-value-sm text-success">CDM Action</div>
+                                        </div>
+                                        <a href="@Url.Action("LaunchCDM", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)" class="btn btn-lg btn-success ml-auto">Launch New</a>
+                                        <a href="@Url.Action("LaunchCDM", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)" class="btn btn-lg btn-outline-success ml-3">Update Existing</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @{
+                    Html.RenderPartial("_ItemRecord");
+                }
+            </section>
+            <span id="anchor_pricechange" />
+            @{
+                Html.RenderPartial("_LaunchpadReport");
+            }
+
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#table-tasks').dataTable({
+                "columnDefs": [
+                    { "orderable": false, "targets": 0 }
+                ],
+                "order": [[5, "desc"]]
+            });
+            $("#dataTable-record").dataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'excel'
+                ],
+                responsive: true
+            });
+            $("#summary-total").text(summarytotalsku().toString());
+            calcpercsummary();
+
+
+            //Chart1
+            var ctx = document.getElementById('chart-summary-all').getContext('2d');
+            window.myPie = new Chart(ctx, config);
+            //Chart 2
+            var ctx1 = document.getElementById('chart-summary-account').getContext('2d');
+            window.myBar = new Chart(ctx1, {
+                type: 'horizontalBar',
+                data: barChartData,
+                options: {
+                    title: {
+                        display: true,
+                        text: 'In Progress SKUs by Account'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            stacked: true,
+                        }],
+                        yAxes: [{
+                            stacked: true
+                        }]
+                    }
+                }
+            });
+        });
+        function summarytotalsku() {
+            var sum = 0;
+            $('.summarydata').each(function () {
+                sum += parseFloat($(this).text());
+            });
+            return sum;
+        }
+        function calcpercsummary() {
+            var total = parseInt($("#summary-total").text());
+            for (i = 0; i < 6; i++) {
+                $(".summaryperc").eq(i).text((parseInt($(".summarydata").eq(i).text()) / total * 100).toFixed(2) + "%");
+            }
+        }
+
+    </script>
+    
+    <script async>
+        //Summary Pie Chart - All brands, all accounts total
+
+        var total = summarytotalsku();
+        var config = {
+            type: 'pie',
+            data: {
+                datasets: [{
+                    data: [
+                        $(".summarydata").eq(0).text(),
+                        $(".summarydata").eq(1).text(),
+                        $(".summarydata").eq(2).text(),
+                        $(".summarydata").eq(3).text(),
+                        $(".summarydata").eq(4).text(),
+                    ],
+                    backgroundColor: [
+                        "#CACFD2",
+                        "#85C1E9",
+                        "#3498DB",
+                        "#A9DFBF",//green
+                        "#F1948A",//red
+                    ]
+                }],
+                labels: [
+                    'Not Presented',
+                    'Initiated',
+                    'Pending',
+                    "Accepted",
+                    "Rejected"
+                ]
+            },
+            options: {
+                responsive: true
+            }
+        };
+
+        window.onload = function () {
+            
+        };
+
+    </script>
+    <script async>
+        var randomScalingFactor = function () {
+            return Math.round(Math.random() * 100);
+        };
+        //Group by Account Chart - 1 selected brand = 1 instance
+        var barChartData = {
+            labels: ['Walmart', 'Costco', 'Retail', 'Loblaws', 'Sobeys', 'Metro'],
+            datasets: [{
+                label: 'Not Presented',
+                backgroundColor: "#CACFD2",
+                data: [
+                    $(".acc-status1").eq(0).text(),
+                    $(".acc-status1").eq(1).text(),
+                    $(".acc-status1").eq(2).text(),
+                    $(".acc-status1").eq(3).text(),
+                    $(".acc-status1").eq(4).text(),
+                    $(".acc-status1").eq(5).text()
+                ]
+            }, {
+                label: 'Initiated',
+                backgroundColor: "#85C1E9",
+                data: [
+                    $(".acc-status2").eq(0).text(),
+                    $(".acc-status2").eq(1).text(),
+                    $(".acc-status2").eq(2).text(),
+                    $(".acc-status2").eq(3).text(),
+                    $(".acc-status2").eq(4).text(),
+                    $(".acc-status2").eq(5).text()
+                ]
+            }, {
+                label: 'Pending',
+                backgroundColor: "#3498DB",
+                data: [
+                    $(".acc-status3").eq(0).text(),
+                    $(".acc-status3").eq(1).text(),
+                    $(".acc-status3").eq(2).text(),
+                    $(".acc-status3").eq(3).text(),
+                    $(".acc-status3").eq(4).text(),
+                    $(".acc-status3").eq(5).text()
+                ]
+            }]
+
+        };
+
+    </script>
+    
+}

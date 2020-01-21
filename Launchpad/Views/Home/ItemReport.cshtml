@@ -1,0 +1,294 @@
+﻿
+@{
+    ViewBag.Title = "ItemReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="py-2">
+    <div class="row">
+        <div class="col-12">
+            <section>
+                <ol class="breadcrumb">
+                    <li ><h5 class="text-muted">Item Report &nbsp;</h5></li>
+                    <li><h5 class="text-muted"> - @ViewBag.currentdate</h5></li>
+                </ol>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card border-0">
+                            <div class="card-body p-1">
+                                <div class="row">
+                                    <div class="col-6 border-right">
+                                        <ul class="row">
+                                            <li class="list-group-item border-0 col-6">
+                                                <h5 class="text-muted">Item Number: </h5>
+                                                <b>90001</b>
+                                            </li>
+                                            <li class="list-group-item border-0 col-6">
+                                                <h5 class="text-muted">Item Description: </h5>
+                                                <b>Kikkoman Soy Sauce 255ml</b>
+                                            </li>
+                                            <li class="list-group-item border-0 col-6">
+                                                <h5 class="text-muted">BDM: </h5>
+                                                <b>Keira Hall</b>
+                                            </li>
+                                            <li class="list-group-item border-0 col-6">
+                                                <h5 class="text-muted">Brand: </h5>
+                                                <b>Kikkoman Brand</b>
+                                            </li>
+                                            <li class="list-group-item  border-0 col-6">
+                                                <h5 class="text-muted">CDM: </h5>
+                                                <b>Cathy Pye</b>
+                                            </li>
+                                            <li class="list-group-item border-0 col-6">
+                                                <h5 class="text-muted">Account: </h5>
+                                                <b>Loblaws</b>
+                                            </li>
+                                            <li class="list-group-item  border-0 col-6">
+                                                <h5 class="text-muted">Banner: </h5>
+                                                <b>Nofrills</b>
+                                            </li>
+                                            <li class="list-group-item  border-0 col-6">
+                                                <h5 class="text-muted">Category: </h5>
+                                                <b>Example Category</b>
+                                            </li>
+
+                                            <li class="list-group-item  border-0 col-6">
+                                                <h5 class="text-muted">Status: </h5>
+                                                <b><i class="fa fa-square text-primary"></i> Pending</b>
+                                            </li>
+                                            <li class="list-group-item col-6 border-0">
+                                                <div class="form-group">
+                                                    <h5>Status Comments</h5>
+                                                    <textarea class="form-control bg-white" rows="3" id="comment2" readonly>Example Status Comment</textarea>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item border-0 col-6">
+                                                <div class="form-group">
+                                                    <h5>Last Updated</h5>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control bg-white" readonly value="01/21/2020">
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item col-6 border-0">
+                                                <div class="form-group">
+                                                    <h5>Follow-up Date</h5>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control bg-white" readonly value="02/12/2020">
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-6">
+                                        <ul class="row">
+                                            <li class="list-group-item border-0 col-6">
+                                                <div class="form-group">
+                                                    <h5>Launch Date</h5>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control bg-white" readonly value="01/01/2020">
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item col-6 border-0">
+                                                <div class="form-group">
+                                                    <h5>Launch Comments</h5>
+                                                    <textarea class="form-control bg-white" rows="3" id="comment2" readonly>Example Launch Comment</textarea>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item border-0 col-6">
+                                                <div class="form-group">
+                                                    <h5>POG Review Date</h5>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control bg-white" readonly value="02/01/2020">
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item col-6 border-0">
+                                                <div class="form-group">
+                                                    <h5>POG Drop Date</h5>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control bg-white" readonly value="02/02/2020">
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item col-6 border-0">
+                                                <div class="form-group">
+                                                    <h5>Contact Info</h5>
+                                                    <textarea class="form-control bg-white" rows="3" id="comment1" readonly>Contact Info Example</textarea>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item col-6 border-0">
+                                                <div class="form-group">
+                                                    <h5>Competitive Info</h5>
+                                                    <textarea class="form-control bg-white" rows="3" id="comment2" readonly>Competitive Info Example</textarea>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="reportacountdetails" class="mt-3">
+                <!--1 brand, any accounts or Any brands, 1 account-->
+                <!--Display average timeframe for all brand items or all account items, display success rate-->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card border-0">
+                            <div class="card-body p-1">
+                                <div class="row col-12 py-3">
+                                    <div class="col-12">
+                                        <h5 class="text-muted">Item Details - 1 SKU Only</h5>
+                                        <hr />
+                                    </div>
+                                    <div class="col-6" id="reportData">
+                                        <h5>SKU for all accounts</h5>
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr class="thead-dark">
+                                                    <th colspan="4">Kikkoman Soy Sauce 255ml</th>
+                                                </tr>
+                                                <tr class="thead-light">
+                                                    <th>Account</th>
+                                                    <th>Current Status</th>
+                                                    <th>Last Update</th>
+                                                    <th>Time Elapsed</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="table-primary">
+                                                    <td>Amazon</td>
+                                                    <td>Not VOR</td>
+                                                    <td>07/11/2019</td>
+                                                    <td>0 Days</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Walmart</td>
+                                                    <td>Pending</td>
+                                                    <td>08/11/2019</td>
+                                                    <td>71 Days</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Costco</td>
+                                                    <td>Pending</td>
+                                                    <td>08/31/2019</td>
+                                                    <td>71 Days</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Loblaws</td>
+                                                    <td>Pending</td>
+                                                    <td>08/21/2019</td>
+                                                    <td>71 Days</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Sobeys</td>
+                                                    <td>Pending</td>
+                                                    <td>08/24/2019</td>
+                                                    <td>71 Days</td>
+                                                </tr>
+                                                <tr class="table-primary">
+                                                    <td>Metro</td>
+                                                    <td>Accepted</td>
+                                                    <td>09/17/2019</td>
+                                                    <td>71 Days</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-6 my-auto" id="reportData">
+                                        <h5>SKU for one account</h5>
+                                        <table class="table table-bordered">
+                                            <caption>Item Number: 90001</caption>
+                                            <thead>
+                                                <tr class="thead-dark">
+                                                    <th colspan="2"><span>Kikkoman Soy Sauce 255ml<span class="float-right">Account: Walmart</span></span></th>
+                                                </tr>
+                                                <tr class="thead-light">
+                                                    <th>Status:</th>
+                                                    <th>Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Not VOR</td>
+                                                    <td>-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Not Presented</td>
+                                                    <td>01/01/2019</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Launch Package Sent</td>
+                                                    <td>01/11/2019</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Initial Contact</td>
+                                                    <td>01/20/2019</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Initial Meeting</td>
+                                                    <td>02/06/2019</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>VOR Change Initiated</td>
+                                                    <td>-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Pending</td>
+                                                    <td>02/20/2019</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Accepted</td>
+                                                    <td>04/08/2019</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Declined by Retailer</td>
+                                                    <td>-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Declined by Client</td>
+                                                    <td>-</td>
+                                                </tr>
+                                                <tr class="table-light">
+                                                    <th>Time Elapsed</th>
+                                                    <th>98 days</th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </section>
+
+        </div>
+    </div>
+</div>

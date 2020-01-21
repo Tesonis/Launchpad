@@ -1,0 +1,607 @@
+﻿@{
+    ViewBag.Title = "Costing Model";
+    ViewBag.Name = Request.Cookies["SecToken"]["FullName"];
+}
+@model Launchpad.Models.ItemViewModels.SearchViewModel
+@Styles.Render("~/Content/bs-select")
+@Styles.Render("~/Content/css")
+@Styles.Render("~/Content/Site.css")
+<link href="~/Content/Site.css" rel="stylesheet" />
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="@Url.Action("Launchpad", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)"><i class="fa fa-lg fa-home pr-2"></i><b><u>Price Change Management</u></b></a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b>Costing Model</b></li>
+    </ol>
+</nav>
+<div class="bg-white py-3 multi_step_form">
+    <div class="mx-auto text-center py-4"><h2 class="text-muted">Launch Items</h2></div>
+    <div class="row ">
+        <ul class="progressbar progressbar-3 col-8 mx-auto">
+            <li class="active">Select Items to Launch</li>
+            <li>Enter Launch Values</li>
+            <li>Select VOR Status for Accounts</li>
+        </ul>
+    </div>
+    <hr />
+    <div class="row container-fluid">
+        <div id="multiForm" class="container-fluid mx-auto">
+            @{
+                if (ViewBag.a == "create")
+                {
+                    <section id="step1create" class="step mx-auto col-8">
+                        <h5 class="text-muted"><span class="text-primary">Step 1</span> - Select Products to Launch</h5>
+                        <div class="mt-2">
+                            <div class="py-3"><b>Select Brand Manager</b></div>
+                            <div class="input-group">
+                                <select class="form-control" id="ccyear">
+                                    <option>Terry Huang</option>
+                                </select>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="py-3"><b>Select Brand</b></div>
+                            <div class="input-group">
+                                @Html.DropDownListFor(x => x.Brands, Model.Brands, new { @class = "selectpicker form-control search-result-filter", data_live_search = "true", data_style = "btn-white border-secondary bg-white", title = "--- No Brand Selected ---" })
+                                <span class="input-group-append">
+                                    <button class="btn btn-success" type="button" onclick="showbrandtable();">Search All Items</button>
+                                </span>
+                            </div>
+
+                        </div>
+                        <hr />
+                        <div id="brandtable" style="display:none;">
+                            
+                            <table id="table_branditems" class="table table-bordered datatable">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th width="50"><button class="btn btn-primary btn-sm">Select All</button></th>
+                                        <th>Item Number</th>
+                                        <th>Item Description</th>
+                                        <th>Unit Size</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                        <td>57118</td>
+                                        <td>Kikkoman Tempura Batter Mix</td>
+                                        <td>255 GR</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                        <td>57118</td>
+                                        <td>Kikkoman Tempura Batter Mix</td>
+                                        <td>255 GR</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                        <td>57118</td>
+                                        <td>Kikkoman Tempura Batter Mix</td>
+                                        <td>255 GR</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                        <td>57118</td>
+                                        <td>Kikkoman Tempura Batter Mix</td>
+                                        <td>255 GR</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                        <td>57118</td>
+                                        <td>Kikkoman Tempura Batter Mix</td>
+                                        <td>255 GR</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                        <td>57118</td>
+                                        <td>Kikkoman Tempura Batter Mix</td>
+                                        <td>255 GR</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                        <td>57118</td>
+                                        <td>Kikkoman Tempura Batter Mix</td>
+                                        <td>255 GR</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                        <td>57118</td>
+                                        <td>Kikkoman Tempura Batter Mix</td>
+                                        <td>255 GR</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <hr />
+                            <div class="form-group">
+                                <div class="py-3"><b>Select Launch Type:</b></div>
+                                <select class="form-control pl-2" id="sel1">
+                                    <option>Line Extension</option>
+                                    <option>New Brand</option>
+                                </select>
+                            </div>
+                            <hr />
+                            <div class="row py-4 col-12 mx-auto px-0">
+                                <button class="btn btn-lg btn-outline-success btn-block" onclick="Step2()">Launch Selected Items</button>
+                            </div>
+                        </div>
+
+                    </section>
+                }
+                else if (ViewBag.a == "update")
+                {
+                    <section id="step1update" class="step mx-auto col-8">
+                        <h5 class="text-muted"><span class="text-primary">Step 1</span> - Select Products to Update</h5>
+                        <div class="mt-2">
+                            <div class="py-3"><b>Select Brand Manager</b></div>
+                            <div class="input-group">
+                                <select class="form-control" id="ccyear">
+                                    <option>Terry Huang</option>
+                                </select>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="py-3"><b>Select Brand</b></div>
+                            <div class="input-group">
+                                @Html.DropDownListFor(x => x.Brands, Model.Brands, new { @class = "selectpicker form-control search-result-filter", data_live_search = "true", data_style = "btn-white border-secondary bg-white", title = "--- No Brand Selected ---" })
+                                <span class="input-group-append">
+                                    <button class="btn btn-success" type="button" onclick="showbrandtable();">Search All Items</button>
+                                </span>
+                            </div>
+
+                        </div>
+                        <hr />
+                        <div id="brandtable" style="display:none;">
+                            <table id="table_branditems" class="table table-bordered datatable">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th width="50"><button class="btn btn-primary btn-sm">Select All</button></th>
+                                        <th>Item Number</th>
+                                        <th>Item Description</th>
+                                        <th>Unit Size</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                        <td>57118</td>
+                                        <td>Kikkoman Tempura Batter Mix</td>
+                                        <td>255 GR</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                        <td>57118</td>
+                                        <td>Kikkoman Tempura Batter Mix</td>
+                                        <td>255 GR</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                        <td>57118</td>
+                                        <td>Kikkoman Tempura Batter Mix</td>
+                                        <td>255 GR</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                        <td>57118</td>
+                                        <td>Kikkoman Tempura Batter Mix</td>
+                                        <td>255 GR</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                        <td>57118</td>
+                                        <td>Kikkoman Tempura Batter Mix</td>
+                                        <td>255 GR</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                        <td>57118</td>
+                                        <td>Kikkoman Tempura Batter Mix</td>
+                                        <td>255 GR</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                        <td>57118</td>
+                                        <td>Kikkoman Tempura Batter Mix</td>
+                                        <td>255 GR</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                        <td>57118</td>
+                                        <td>Kikkoman Tempura Batter Mix</td>
+                                        <td>255 GR</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <hr />
+                            <div class="row py-4 col-12 mx-auto px-0">
+                                <button class="btn btn-lg btn-outline-success btn-block" onclick="Step2()">Update Selected Items</button>
+                            </div>
+                        </div>
+
+                    </section>
+                }
+            }
+            <div class="modal" id="modalWarningSave" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-danger" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">You have unsaved work</h4>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Leaving this page will result in loss of unsaved work. Would you like to save your work?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-danger" type="button" data-dismiss="modal">Continue without saving</button>
+                            <button class="btn btn-success" type="button">Save changes</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <section id="step2" class="d-none step">
+                <a href="#" onclick="Step1()"><i class="fa fa-long-arrow-left pr-2"></i>Previous Step</a>
+                <hr />
+                <h5 class="text-muted"><span class="text-primary">Step 2</span> - Add Values to Items</h5>
+                <br />
+
+                <div class="col-6 p-0">
+
+                    <div class="form-group col-12 p-0">
+                        <label for="comment">Comment:</label>
+                        <textarea class="form-control" rows="3" id="comment"></textarea>
+                    </div>
+                    <button type="button" id="step2applytoall" class="btn btn-block btn-primary" onclick="applycommenttoall($(this))">Apply values to Selected</button>
+
+                </div>
+                <hr />
+                <div id="launchtable">
+                    <table id="table_groupitems" class="table table-bordered datatable">
+                        <thead class="thead-light">
+                            <tr>
+                                <th width="20"><button class="btn btn-primary btn-sm">Select All</button></th>
+                                <th width="50">Item #</th>
+                                <th width="100">Item Description</th>
+                                <th width="50">Unit Size</th>
+                                <th width="200">Comment</th>
+                                <th width="100">Branch 1 Inventory</th>
+                                <th width="100">Branch 8 Inventory</th>
+                                <th width="100">Branch 9 Inventory</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td>90001</td>
+                                <td>Kikkoman Tempura Batter Mix</td>
+                                <td>255 GR</td>
+                                <td><div><textarea class="form-control commenttable" rows="2" id="comment1"></textarea></div></td>
+                                <td>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-cubes"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm bg-white" readonly value="200">
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm bg-white" readonly value="03/01/2020">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-cubes"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm bg-white" readonly value="200">
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm bg-white" readonly value="03/01/2020">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-cubes"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm bg-white" readonly value="200">
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm bg-white" readonly value="03/01/2020">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td>90001</td>
+                                <td>Kikkoman Tempura Batter Mix</td>
+                                <td>255 GR</td>
+                                <td><div><textarea class="form-control commenttable" rows="2" id="comment1"></textarea></div></td>
+                                <td>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-cubes"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm bg-white" readonly value="200">
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm bg-white" readonly value="03/01/2020">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-cubes"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm bg-white" readonly value="200">
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm bg-white" readonly value="03/01/2020">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-cubes"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm bg-white" readonly value="200">
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm bg-white" readonly value="03/01/2020">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td>90001</td>
+                                <td>Kikkoman Tempura Batter Mix</td>
+                                <td>255 GR</td>
+                                <td><div><textarea class="form-control commenttable" rows="2" id="comment1"></textarea></div></td>
+                                <td>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-cubes"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm bg-white" readonly value="200">
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm bg-white" readonly value="03/01/2020">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-cubes"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm bg-white" readonly value="200">
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm bg-white" readonly value="03/01/2020">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-cubes"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm bg-white" readonly value="200">
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm bg-white" readonly value="03/01/2020">
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr />
+                </div>
+                <hr />
+                <div class="row pt-4">
+                    <a href="#" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#deleteitem-modal">Unlaunch Selected Item</a>
+                    <a href="#" class="btn btn-lg btn-outline-success ml-auto" onclick="Step3()">Save and Continue</a>
+                </div>
+            </section>
+            <section id="step3" class="d-none step">
+                <a href="#" onclick="Step2()"><i class="fa fa-long-arrow-left pr-2"></i>Previous Step</a>
+                <hr />
+                <div class="mt-2 col-8 mx-auto">
+                    <h5 class="text-muted"><span class="text-primary">Step 3</span> - Select VOR Status for Accounts</h5>
+                    <br />
+                    <table id="table_vor" class="table table-bordered datatable">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Key Accounts</th>
+                                <th style="width:200px;">VOR Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Adonis</td>
+                                <td>
+                                    <select class="form-control">
+                                        <option selected>VOR</option>
+                                        <option>Discussion Required</option>
+                                        <option>Not VOR</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Associated Grocers</td>
+                                <td>
+                                    <select class="form-control">
+                                        <option selected>VOR</option>
+                                        <option>Discussion Required</option>
+                                        <option>Not VOR</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Atlantic Independents</td>
+                                <td>
+                                    <select class="form-control">
+                                        <option selected>VOR</option>
+                                        <option>Discussion Required</option>
+                                        <option>Not VOR</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Loblaws</td>
+                                <td>
+                                    <select class="form-control">
+                                        <option selected>VOR</option>
+                                        <option>Discussion Required</option>
+                                        <option>Not VOR</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row pt-4">
+                    <button class="btn btn-lg btn-outline-success ml-auto" data-toggle="modal" data-target="#submitlaunch-modal">Finalize Launch</button>
+                </div>
+            </section>
+            <div class="modal fade" id="deleteitem-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-danger" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">This item will be deleted</h4>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>This item will removed from Launchpad for all users</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-danger" type="button" data-dismiss="modal">Confirm Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="submitlaunch-modal" tabindex="-1" role="dialog" aria-labelledby="modalApprove" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalItemGroup1Label">Confirm submission</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <i class="text-danger"><u>Required</u></i>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="chk-launchpkg">
+                                <label class="custom-control-label" for="chk-launchpkg">Launch package has been sent via email</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a id="btn-CompleteApprove" class="btn btn-lg btn-block btn-success disabled" href="@Url.Action("Launchpad", null, new { view = "bdm", controller = "Home" }, Request.Url.Scheme)">Confirm Launch</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/Site/formwizard.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+            $('#table_groupitems').DataTable({
+                paging: false,
+                searching: false,
+                "columnDefs": [
+                    { "orderable": false, "targets": [0,4,5,6,7 ]}
+                ],
+                "order": [[1, "desc"]],
+                initComplete: function () {
+                    $(this.api().table().container()).find('input').parent().wrap('<form>').parent().attr('autocomplete', 'off');
+                }
+            });
+            $('#table_branditems').DataTable({
+                "columnDefs": [
+                    { "orderable": false, "targets": 0 }
+                ],
+                "order": [[1, "desc"]],
+                initComplete: function () {
+                    $(this.api().table().container()).find('input').parent().wrap('<form>').parent().attr('autocomplete', 'off');
+                }
+            });
+            $('#table_vor').DataTable({
+                paging: false,
+                "columnDefs": [
+                    { "orderable": false, "targets": 1 }
+                ],
+                "order": [[0, "desc"]],
+                initComplete: function () {
+                    $(this.api().table().container()).find('input').parent().wrap('<form>').parent().attr('autocomplete', 'off');
+                }
+            });
+
+
+        });
+
+
+
+    </script>
+
+    <script>
+        function showbrandtable() {
+            $("#brandtable").show();
+        }
+        function applycommenttoall(btn) {
+            var comment = $("#comment").val();
+            btn.closest("section").find(".table-info textarea").val(comment);
+            btn.closest("section").find(".table-info").removeClass("table-info");
+            btn.closest("section").find("#comment").val("");
+        }
+        $("#chk-launchpkg").click(function () {
+            if ($("#chk-launchpkg").is(':checked')) {
+                $("#btn-CompleteApprove").removeClass('disabled');
+            }
+            else {
+                $("#btn-CompleteApprove").addClass('disabled');
+            }
+        });
+    </script>
+}

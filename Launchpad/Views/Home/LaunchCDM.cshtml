@@ -1,0 +1,571 @@
+﻿
+@{
+    ViewBag.Title = "CDM Item Launch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Launchpad.Models.ItemViewModels.SearchViewModel
+@Styles.Render("~/Content/bs-select")
+@Styles.Render("~/Content/css")
+@Styles.Render("~/Content/Site.css")
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="@Url.Action("Launchpad", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)"><i class="fa fa-lg fa-home pr-2"></i><b><u>Launchpad</u></b></a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b>CDM Product Update</b></li>
+    </ol>
+</nav>
+<div class="bg-white py-5 multi_step_form">
+
+    <div class="mx-auto text-center py-4"><h2 class="text-muted">CDM Launch</h2></div>
+    <div class="row col-10 mx-auto">
+        <ul class="progressbar col-12">
+            <li class="active">Select Items</li>
+            <li>Update Status</li>
+            <li>Update Details (Optional)</li>
+            <li>Review</li>
+        </ul>
+    </div>
+    <hr />
+    <div class="row container-fluid">
+
+        <div class="col-12 mx-auto">
+
+            <section id="step1" class="step mx-auto col-12">
+                <h5 class="text-muted"><span class="text-primary">Step 1</span> - Select Products to Update</h5>
+                <div class="mt-2 row col-12">
+                    <div class="col-3">
+                        <div class="py-3"><b>Select CDM</b></div>
+                        <div class="input-group">
+                            <select class="form-control" id="ccyear">
+                                <option>Terry Huang</option>
+                            </select>
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="py-3"><b>Select Account</b></div>
+                        <div class="input-group">
+                            <select class="form-control" id="ccyear">
+                                <option selected>All</option>
+                                <option>Retail</option>
+                                <option>Loblaws</option>
+                                <option>Metro</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="py-3"><b>Select Banner (Optional)</b></div>
+                        <div class="input-group">
+                            <select class="form-control" id="ccyear">
+                                <option selected>All</option>
+                                <option>Nofrills</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="py-3"><b>Select Brand</b></div>
+                        <div class="input-group">
+                            @Html.DropDownListFor(x => x.Brands, Model.Brands, new { @class = "selectpicker form-control search-result-filter", data_live_search = "true", data_style = "btn-white border-secondary", title = "--- No Brand Selected ---" })
+
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <span class="input-group-append">
+                            <button class="btn btn-success btn-block" type="button" onclick="showbrandtable()">Show Items</button>
+                        </span>
+                    </div>
+
+                </div>
+                <hr />
+                <div id="brandtable">
+                    <table id="table_branditems" class="table table-bordered datatable">
+                        <thead class="thead-light">
+                            <tr>
+                                <th width="50"><button class="btn btn-primary btn-sm">Select All</button></th>
+                                <th width="50">Item #</th>
+                                <th>Item Description</th>
+                                <th>Account</th>
+                                <th>Banner</th>
+                                <th>Unit Size</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td>57118</td>
+                                <td>Kikkoman Tempura Batter Mix 255</td>
+                                <td>255 GR</td>
+                                <td>Loblaws</td>
+                                <td>Nofrills</td>
+                                <td>Not VOR</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td>57118</td>
+                                <td>Kikkoman Tempura Batter Mix</td>
+                                <td>255 GR</td>
+                                <td>Sobeys</td>
+                                <td>-</td>
+                                <td>Not Presented</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td>57118</td>
+                                <td>Kikkoman Tempura Batter Mix</td>
+
+                                <td>255 GR</td>
+                                <td>Metro</td>
+                                <td>-</td>
+                                <td>Not Presented</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td>57118</td>
+                                <td>Kikkoman Tempura Batter Mix</td>
+                                <td>255 GR</td>
+                                <td>Loblaws</td>
+                                <td>Fortinos</td>
+
+                                <td>Initiated Contact</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td>57129</td>
+                                <td>Kikkoman Tempura Batter Mix 500</td>
+                                <td>255 GR</td>
+                                <td>Loblaws</td>
+                                <td>Fortinos</td>
+
+                                <td>Pending</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td>90001</td>
+                                <td>Kikkoman Soy Sauce</td>
+                                <td>255 GR</td>
+                                <td>Loblaws</td>
+                                <td>Nofrills</td>
+                                <td>Not Presented</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td>90001</td>
+                                <td>Kikkoman Soy Sauce</td>
+                                <td>255 GR</td>
+                                <td>Loblaws</td>
+                                <td>Fortinos</td>
+                                <td>Not Presented</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td>57118</td>
+                                <td>Kikkoman Tempura Batter Mix</td>
+                                <td>255 GR</td>
+                                <td>Loblaws</td>
+                                <td>Fortinos</td>
+                                <td>Pending</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr />
+                </div>
+                <div class="row py-5 col-12 mx-auto">
+                    <button class="btn btn-lg btn-outline-success btn-block" onclick="Step2()">Next Step</button>
+                </div>
+            </section>
+            <section id="step2" class="mt-3 step d-none">
+                <!-- PO Details -->
+                <a href="#?" onclick="Step1()"><i class="fa fa-long-arrow-left pr-2"></i>Previous Step</a><hr />
+                <h5 class="text-muted py-3"><span class="text-primary">Step 2</span> - Update Status</h5>
+                <div class="row p-0">
+                    <div class="col-6">
+                        <div class="form-group col-12">
+                            <label for="sel1">Status:</label>
+                            <select class="form-control">
+                                <option>Not VOR</option>
+                                <option>Not presented</option>
+                                <option>VOR Change Initiated</option>
+                                <option>Vor Change Complete</option>
+                                <option>Initial Contact</option>
+                                <option>Initial Meeting</option>
+                                <option>Launch Package Sent</option>
+                                <option>Pending</option>
+                                <option>Accepted</option>
+                                <option>Declined By Retailer</option>
+                                <option>Declined By Client</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="comment">Follow Up Date:</label>
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="comment">Comment:</label>
+                        <textarea class="form-control" rows="5" id="comment"></textarea>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-block btn-primary" onclick="applycommenttoall()">Apply values to Selected</button>
+                    </div>
+
+                </div>
+                <hr />
+                <div id="launchtable">
+                    <table id="table_groupitems" class="table table-bordered datatable">
+                        <thead class="thead-light">
+                            <tr>
+                                <th width="50"><button class="btn btn-primary btn-sm">Select All</button></th>
+                                <th>Item Number</th>
+                                <th>Item Description</th>
+                                <th>Unit Size</th>
+                                <th>Status</th>
+                                <th>Follow Up Date</th>
+                                <th>Comment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td>57118</td>
+                                <td>Kikkoman Tempura Batter Mix</td>
+                                <td>255 GR</td>
+                                <td>
+                                    <select class="form-control">
+                                        <option>Not VOR</option>
+                                        <option>Not presented</option>
+                                        <option>VOR Change Initiated</option>
+                                        <option>Vor Change Complete</option>
+                                        <option>Initial Contact</option>
+                                        <option>Initial Meeting</option>
+                                        <option>Launch Package Sent</option>
+                                        <option>Pending</option>
+                                        <option>Accepted</option>
+                                        <option>Declined By Retailer</option>
+                                        <option>Declined By Client</option>
+                                    </select>
+                                </td>
+                                <td><input type="date" class="form-control"></td>
+                                <td><div><textarea class="form-control commenttable" rows="2" id="comment1"></textarea></div></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td>57112</td>
+                                <td>Kikkoman Tempura Batter Mix</td>
+                                <td>255 GR</td>
+                                <td>
+                                    <select class="form-control">
+                                        <option>Not VOR</option>
+                                        <option>Not presented</option>
+                                        <option>VOR Change Initiated</option>
+                                        <option>Vor Change Complete</option>
+                                        <option>Initial Contact</option>
+                                        <option>Initial Meeting</option>
+                                        <option>Launch Package Sent</option>
+                                        <option>Pending</option>
+                                        <option>Accepted</option>
+                                        <option>Declined By Retailer</option>
+                                        <option>Declined By Client</option>
+                                    </select>
+                                </td>
+                                <td><input type="date" class="form-control"></td>
+                                <td><div><textarea class="form-control commenttable" rows="2" id="comment2"></textarea></div></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td>57117</td>
+                                <td>Kikkoman Tempura Batter Mix</td>
+                                <td>255 GR</td>
+                                <td>
+                                    <select class="form-control">
+                                        <option>Not VOR</option>
+                                        <option>Not presented</option>
+                                        <option>VOR Change Initiated</option>
+                                        <option>Vor Change Complete</option>
+                                        <option>Initial Contact</option>
+                                        <option>Initial Meeting</option>
+                                        <option>Launch Package Sent</option>
+                                        <option>Pending</option>
+                                        <option>Accepted</option>
+                                        <option>Declined By Retailer</option>
+                                        <option>Declined By Client</option>
+                                    </select>
+                                </td>
+                                <td><input type="date" class="form-control"></td>
+                                <td><div><textarea class="form-control commenttable" rows="2" id="comment3"></textarea></div></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td>57128</td>
+                                <td>Kikkoman Tempura Batter Mix</td>
+                                <td>255 GR</td>
+                                <td>
+                                    <select class="form-control">
+                                        <option>Not VOR</option>
+                                        <option>Not presented</option>
+                                        <option>VOR Change Initiated</option>
+                                        <option>Vor Change Complete</option>
+                                        <option>Initial Contact</option>
+                                        <option>Initial Meeting</option>
+                                        <option>Launch Package Sent</option>
+                                        <option>Pending</option>
+                                        <option>Accepted</option>
+                                        <option>Declined By Retailer</option>
+                                        <option>Declined By Client</option>
+                                    </select>
+                                </td>
+                                <td><input type="date" class="form-control"></td>
+                                <td><div><textarea class="form-control" rows="2" id="comment4"></textarea></div></td>
+
+                            </tr>
+                            <tr>
+                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td>55342</td>
+                                <td>Kikkoman Tempura Batter Mix</td>
+                                <td>255 GR</td>
+                                <td>
+                                    <select class="form-control">
+                                        <option>Not VOR</option>
+                                        <option>Not presented</option>
+                                        <option>VOR Change Initiated</option>
+                                        <option>Vor Change Complete</option>
+                                        <option>Initial Contact</option>
+                                        <option>Initial Meeting</option>
+                                        <option>Launch Package Sent</option>
+                                        <option>Pending</option>
+                                        <option>Accepted</option>
+                                        <option>Declined By Retailer</option>
+                                        <option>Declined By Client</option>
+                                    </select>
+                                </td>
+                                <td><input type="date" class="form-control"></td>
+                                <td><div><textarea class="form-control" rows="2" id="comment5"></textarea></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr />
+                </div>
+                <hr />
+                <div class="row pt-4">
+                    <button class="btn btn-lg btn-outline-success btn-block" onclick="Step3()">Next Step</button>
+                </div>
+            </section>
+            <section id="step3" class="mt-3 step d-none">
+                <a href="#?" onclick="Step2()"><i class="fa fa-long-arrow-left pr-2"></i>Previous Step</a><hr />
+                <h5 class="text-muted py-3"><span class="text-primary">Step 3</span> - Update Details (Optional)</h5>
+                <div class="col-12 row p-0">
+                    <div class="col-4">
+                        <div class="form-group col-12">
+                            <label for="comment">Category:</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="comment">POG Review Date:</label>
+                            <input type="date" class="form-control">
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="comment">POG Drop Date:</label>
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group col-4">
+                        <label for="comment">Category Manager / Contact Info:</label>
+                        <textarea class="form-control" rows="9" id="comment"></textarea>
+                    </div>
+                    <div class="form-group col-4">
+                        <label for="comment">Competitive Info:</label>
+                        <textarea class="form-control" rows="9" id="comment"></textarea>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-block btn-primary" onclick="applycommenttoall()">Apply values to Selected</button>
+                    </div>
+
+                </div>
+                <hr />
+                <div id="launchtable">
+                    <table id="table_groupitems" class="table table-bordered datatable">
+                        <thead class="thead-light">
+                            <tr>
+                                <th width="50"><button class="btn btn-primary btn-sm">Select All</button></th>
+                                <th>Item Description</th>
+                                <th>Unit Size</th>
+                                <th>Category</th>
+                                <th>POG Review Date</th>
+                                <th>POG Drop Date</th>
+                                <th>Contact Info</th>
+                                <th>Competitive Info</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                <td>Kikkoman Tempura Batter Mix</td>
+                                <td>255 GR</td>
+                                <td><input type="text" class="form-control" /></td>
+                                <td><input type="date" class="form-control"></td>
+                                <td><input type="date" class="form-control"></td>
+                                <td><div><textarea class="form-control commenttable" rows="2" id="comment1"></textarea></div></td>
+                                <td><div><textarea class="form-control commenttable" rows="2" id="comment2"></textarea></div></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <hr />
+                </div>
+                <hr />
+                <div class="row pt-4">
+                    <button class="btn btn-lg btn-outline-success btn-block" onclick="Step4()">Next Step</button>
+                </div>
+            </section>
+            <section id="step4" class="mt-3 step d-none">
+                <a href="#?" onclick="Step3()"><i class="fa fa-long-arrow-left pr-2"></i>Previous Step</a><hr />
+                <h5 class="text-muted py-3"><span class="text-primary">Step 4</span> - Review Launch Details</h5>
+
+
+
+                <table id="table_groupitems" class="table table-bordered datatable">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Item #</th>
+                            <th>Item Description</th>
+                            <th>Unit Size</th>
+                            <th>Status</th>
+                            <th>Follow Up Date</th>
+                            <th>Comment</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>90001</td>
+                            <td>Kikkoman Tempura Batter Mix</td>
+                            <td>255 GR</td>
+                            <td>Not VOR</td>
+                            <td>01/01/2021</td>
+                            <td>Test Comment</td>
+                            <td><button class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#modalDetails">Details</button></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <div class="row pt-4">
+                    <a href="@Url.Action("Launchpad","Home")" class="btn btn-lg btn-outline-success btn-block">Save and Exit</a>
+                </div>
+
+                <!--Modals-->
+                <div class="modal fade" id="modalDetails" tabindex="-1" role="dialog" aria-labelledby="modalDetails" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalItemGroup1Label">Details for: 90001 - Kikkoman Tempura Batter Mix - 255 GR</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="card border-0">
+                                    <div class="card-body  p-1">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <div class="form-group">
+                                                    <h5>Category</h5>
+                                                    <input type="text" class="form-control" contenteditable="false" value="Example Category">
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="form-group">
+                                                    <h5>POG Review Date</h5>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control bg-white" readonly value="02/01/2020">
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="form-group">
+                                                    <h5>POG Drop Date</h5>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control bg-white" readonly value="02/02/2020">
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="form-group">
+                                                    <h5>Contact Info</h5>
+                                                    <textarea class="form-control bg-white" rows="5" id="comment1" readonly>Contact Info Example</textarea>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="form-group">
+                                                    <h5>Competitive Info</h5>
+                                                    <textarea class="form-control bg-white" rows="5" id="comment2" readonly>Competitive Info Example</textarea>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="modalApprove" tabindex="-1" role="dialog" aria-labelledby="modalApprove" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalItemGroup1Label">Confirm submission</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                A confirmation email will be sent to you and your team lead.
+                            </div>
+                            <div class="modal-footer">
+                                <a id="btn-CompleteApprove" class="btn btn-lg btn-block btn-success" href="@Url.Action("Launchpad", null, new { view = "cdm", controller = "Home" }, Request.Url.Scheme)">Confirm</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Scripts/Site/formwizard.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#table_branditems').DataTable({
+                "columnDefs": [
+                    { "orderable": false, "targets": 0 }
+                ],
+                "order": [[1, "desc"]],
+            });
+            $('#table_groupitems').DataTable({
+                "columnDefs": [
+                    { "orderable": false, "targets": [0,4,5,6] }
+                ],
+                "order": [[1, "desc"]],
+            });
+            $('[data-toggle="tooltip"]').tooltip();
+            $("#btn-programDeselectAll").hide();
+        });
+        
+        function selectAll() {
+            $('#selitemGroups option').attr('selected', true);
+            $("#selitemGroups").data("selectpicker").refresh()
+        }
+    </script>
+}

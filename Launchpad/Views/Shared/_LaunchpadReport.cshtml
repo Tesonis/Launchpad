@@ -1,0 +1,304 @@
+﻿<section id="step2" class="my-4 p-3 bg-white border">
+
+    <section id="formajax">
+        <div class="p-3 d-flex align-items-center">
+            <i class="fa fa-bar-chart bg-success p-3 font-2xl mr-3"></i>
+            <div class="text-value-sm text-success">Report</div>
+            <button class="btn btn-outline-primary btn-lg ml-auto" onclick="print()"><i class="fa fa-print"></i> Print Current Report</button>
+        </div>
+        <hr />
+        <div class="mt-2 row col-12">
+            <div class="col-3">
+                <div class="py-3"><b>Select Brand</b></div>
+                <div class="input-group">
+                    <select class="form-control" id="reportbrand">
+                        <option selected>All</option>
+                        <option>Midel</option>
+                        <option>Kikkoman</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="py-3"><b>Select Account</b></div>
+                <div class="input-group">
+                    <select class="form-control" id="ccyear">
+                        <option>All</option>
+                        <option>Retail</option>
+                        <option>Loblaws</option>
+                        <option>Metro</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="py-3"><b>Select Banner (Optional)</b></div>
+                <div class="input-group">
+                    <select class="form-control" id="ccyear">
+                        <option>All</option>
+                        <option>Nofrills</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="py-3"><b>Item Number</b></div>
+                <div class="input-group">
+                    <input type="number" class="form-control" placeholder="All Items" />
+                </div>
+            </div>
+
+            <div class="col-12 mt-3">
+                <span class="input-group-append">
+                    <button class="btn btn-success btn-block" type="button" onclick="">Generate Report</button>
+                </span>
+            </div>
+
+        </div>
+    </section>
+    <hr />
+    <section id="report">
+        <section id="reportsummary">
+            <!--Any brand, any account: Summary-->
+            <!--Display total items in each status-->
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="text-muted">TOL Summary (All brands, All accounts)</h5>
+                    <hr />
+                </div>
+
+                <div class="col-6 my-auto" id="reportData">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="thead-dark">
+                                <th>Status</th>
+                                <th>Total SKUs</th>
+                                <th>% of SKU Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="summarylbl">Not Presented</td>
+                                <td class="summarydata">43</td>
+                                <td class="summaryperc"></td>
+                            </tr>
+                            <tr>
+                                <td class="summarylbl">Initiated</td>
+                                <td class="summarydata">48</td>
+                                <td class="summaryperc"></td>
+                            </tr>
+                            <tr>
+                                <td class="summarylbl">Pending</td>
+                                <td class="summarydata">66</td>
+                                <td class="summaryperc"></td>
+                            </tr>
+                            <tr class="table-success">
+                                <td class="summarylbl">Accepted</td>
+                                <td class="summarydata">630</td>
+                                <td class="summaryperc"></td>
+                            </tr>
+                            <tr class="table-danger">
+                                <td class="summarylbl">Rejected</td>
+                                <td class="summarydata">30</td>
+                                <td class="summaryperc"></td>
+                            </tr>
+                            <tr class="table-light">
+                                <th>Total</th>
+                                <th id="summary-total"></th>
+                                <th>100%</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-6">
+                    <div class="canvas-holder">
+                        <canvas id="chart-summary-all"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br />
+        <section id="reportgroupaccount" class="mt-5">
+            <!--Any brand, any account: group by account/brand-->
+            <!--Display total items in each status-->
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="text-muted">TOL Summary - (Group by Accounts/Brand)</h5>
+                    <hr />
+                </div>
+
+                <div class="col-6 my-auto" id="reportData">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="thead-dark">
+                                <th>Account</th>
+                                <th>Not Presented</th>
+                                <th>Initiated</th>
+                                <th>Pending</th>
+                                <th>Accepted</th>
+                                <th>Rejected</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Walmart</td>
+                                <td class="acc-status1">3</td>
+                                <td class="acc-status2">12</td>
+                                <td class="acc-status3">64</td>
+                                <td>431</td>
+                                <td>42</td>
+                                <th>522</th>
+                            </tr>
+                            <tr>
+                                <td>Costco</td>
+                                <td class="acc-status1">1</td>
+                                <td class="acc-status2">7</td>
+                                <td class="acc-status3">33</td>
+                                <td>354</td>
+                                <td>21</td>
+                                <th>416</th>
+                            </tr>
+                            <tr>
+                                <td>Retail</td>
+                                <td class="acc-status1">7</td>
+                                <td class="acc-status2">21</td>
+                                <td class="acc-status3">55</td>
+                                <td>651</td>
+                                <td>53</td>
+                                <th>787</th>
+                            </tr>
+                            <tr>
+                                <td>Loblaws</td>
+                                <td class="acc-status1">15</td>
+                                <td class="acc-status2">32</td>
+                                <td class="acc-status3">68</td>
+                                <td>441</td>
+                                <td>66</td>
+                                <th>622</th>
+                            </tr>
+                            <tr>
+                                <td>Sobeys</td>
+                                <td class="acc-status1">4</td>
+                                <td class="acc-status2">43</td>
+                                <td class="acc-status3">77</td>
+                                <td>461</td>
+                                <td>44</td>
+                                <th>629</th>
+                            </tr>
+                            <tr>
+                                <td>Metro</td>
+                                <td class="acc-status1">9</td>
+                                <td class="acc-status2">11</td>
+                                <td class="acc-status3">22</td>
+                                <td>333</td>
+                                <td>34</td>
+                                <th>409</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-6">
+                    <div class="canvas-holder">
+                        <canvas id="chart-summary-account"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br />
+        <section id="reportacountdetails" class="mt-5">
+            <!--1 brand, any accounts or Any brands, 1 account-->
+            <!--Display average timeframe for all brand items or all account items, display success rate-->
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="text-muted">Account/Brand Details - (Any Brands, 1 account)/ (1 Brand, Any Accounts)</h5>
+                    <hr />
+                </div>
+
+                <div class="col-6 my-auto" id="reportData">
+                    <table class="table table-bordered">
+                        <caption>Walmart</caption>
+                        <thead>
+                            <tr class="thead-dark">
+                                <th colspan="4">Average Timeframe</th>
+                            </tr>
+                            <tr class="thead-light">
+                                <th>Status</th>
+                                <th>Number of SKUs</th>
+                                <th>Average Days in Status</th>
+                                <th>% of In-progress SKUs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Not Presented</td>
+                                <td>3</td>
+                                <td>13 Days</td>
+                                <td>3.2%</td>
+                            </tr>
+                            <tr>
+                                <td>Initiated</td>
+                                <td>12</td>
+                                <td>17 Days</td>
+                                <td>12.9%</td>
+                            </tr>
+                            <tr>
+                                <td>Pending</td>
+                                <td>64</td>
+                                <td>63 Days</td>
+                                <td>68.8%</td>
+                            </tr>
+                            <tr class="table-light">
+                                <th>Total In-progress</th>
+                                <th>79</th>
+                                <th>93 Days</th>
+                                <th>100%</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-6 my-auto" id="reportData">
+                    <table class="table table-bordered">
+                        <caption>Walmart</caption>
+                        <thead>
+                            <tr class="thead-dark">
+                                <th colspan="4">Approval Rate</th>
+                            </tr>
+                            <tr class="thead-light">
+                                <th>Status</th>
+                                <th>Number of SKUs</th>
+                                <th>Average Timeframe (days)</th>
+                                <th>% of Finalized SKUs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-success">
+                                <td>Approved</td>
+                                <td>500</td>
+                                <td>95 days</td>
+                                <td>83.4%</td>
+                            </tr>
+                            <tr class="table-warning">
+                                <td>Declined by Customer</td>
+                                <td>65</td>
+                                <td>55 days</td>
+                                <td>12.9</td>
+                            </tr>
+                            <tr class="table-danger">
+                                <td>Declined by Client</td>
+                                <td>34</td>
+                                <td>35 days</td>
+                                <td>5.7%</td>
+                            </tr>
+                            <tr class="table-light">
+                                <th>Total Finalized</th>
+                                <th>599</th>
+                                <th>72 days</th>
+                                <th>100%</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <br />
+        
+    </section>
+</section>
