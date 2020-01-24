@@ -2,7 +2,7 @@
     ViewBag.Title = "Costing Model";
     ViewBag.Name = Request.Cookies["SecToken"]["FullName"];
 }
-@model Launchpad.Models.ItemViewModels.SearchViewModel
+@model Launchpad.Models.HomeViewModels.BDMViewModel
 @Styles.Render("~/Content/bs-select")
 @Styles.Render("~/Content/css")
 @Styles.Render("~/Content/Site.css")
@@ -19,213 +19,13 @@
         <ul class="progressbar progressbar-3 col-8 mx-auto">
             <li class="active">Select Items to Launch</li>
             <li>Enter Launch Values</li>
-            <li>Select VOR Status for Accounts</li>
+            <li>Select Status for Accounts</li>
         </ul>
     </div>
     <hr />
     <div class="row container-fluid">
         <div id="multiForm" class="container-fluid mx-auto">
-            @{
-                if (ViewBag.a == "create")
-                {
-                    <section id="step1create" class="step mx-auto col-8">
-                        <h5 class="text-muted"><span class="text-primary">Step 1</span> - Select Products to Launch</h5>
-                        <div class="mt-2">
-                            <div class="py-3"><b>Select Brand Manager</b></div>
-                            <div class="input-group">
-                                <select class="form-control" id="ccyear">
-                                    <option>Terry Huang</option>
-                                </select>
-                                <div class="input-group-append">
-                                    <span class="input-group-text">
-                                        <i class="fa fa-user"></i>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="py-3"><b>Select Brand</b></div>
-                            <div class="input-group">
-                                @Html.DropDownListFor(x => x.Brands, Model.Brands, new { @class = "selectpicker form-control search-result-filter", data_live_search = "true", data_style = "btn-white border-secondary bg-white", title = "--- No Brand Selected ---" })
-                                <span class="input-group-append">
-                                    <button class="btn btn-success" type="button" onclick="showbrandtable();">Search All Items</button>
-                                </span>
-                            </div>
-
-                        </div>
-                        <hr />
-                        <div id="brandtable" style="display:none;">
-                            
-                            <table id="table_branditems" class="table table-bordered datatable">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th width="50"><button class="btn btn-primary btn-sm">Select All</button></th>
-                                        <th>Item Number</th>
-                                        <th>Item Description</th>
-                                        <th>Unit Size</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                        <td>57118</td>
-                                        <td>Kikkoman Tempura Batter Mix</td>
-                                        <td>255 GR</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                        <td>57119</td>
-                                        <td>Kikkoman Tempura Batter Mix</td>
-                                        <td>255 GR</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                        <td>57120</td>
-                                        <td>Kikkoman Tempura Batter Mix</td>
-                                        <td>255 GR</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                        <td>57121</td>
-                                        <td>Kikkoman Tempura Batter Mix</td>
-                                        <td>255 GR</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                        <td>57122</td>
-                                        <td>Kikkoman Tempura Batter Mix</td>
-                                        <td>255 GR</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                        <td>57123</td>
-                                        <td>Kikkoman Tempura Batter Mix</td>
-                                        <td>255 GR</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                        <td>57124</td>
-                                        <td>Kikkoman Tempura Batter Mix</td>
-                                        <td>500 GR</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                        <td>57125</td>
-                                        <td>Kikkoman Tempura Batter Mix</td>
-                                        <td>500 GR</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <hr />
-                            <div class="form-group">
-                                <div class="py-3"><b>Select Launch Type:</b></div>
-                                <select class="form-control pl-2" id="sel1">
-                                    <option>Line Extension</option>
-                                    <option>New Brand</option>
-                                </select>
-                            </div>
-                            <hr />
-                            <div class="row py-4 col-12 mx-auto px-0">
-                                <button class="btn btn-lg btn-outline-success btn-block" onclick="Step2()">Launch Selected Items</button>
-                            </div>
-                        </div>
-
-                    </section>
-                }
-                else if (ViewBag.a == "update")
-                {
-                    <section id="step1update" class="step mx-auto col-8">
-                        <h5 class="text-muted"><span class="text-primary">Step 1</span> - Select Products to Update</h5>
-                        <div class="mt-2">
-                            <div class="py-3"><b>Select Brand Manager</b></div>
-                            <div class="input-group">
-                                <select class="form-control" id="ccyear">
-                                    <option>Terry Huang</option>
-                                </select>
-                                <div class="input-group-append">
-                                    <span class="input-group-text">
-                                        <i class="fa fa-user"></i>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="py-3"><b>Select Brand</b></div>
-                            <div class="input-group">
-                                @Html.DropDownListFor(x => x.Brands, Model.Brands, new { @class = "selectpicker form-control search-result-filter", data_live_search = "true", data_style = "btn-white border-secondary bg-white", title = "--- No Brand Selected ---" })
-                                <span class="input-group-append">
-                                    <button class="btn btn-success" type="button" onclick="showbrandtable();">Search All Items</button>
-                                </span>
-                            </div>
-
-                        </div>
-                        <hr />
-                        <div id="brandtable" style="display:none;">
-                            <table id="table_branditems" class="table table-bordered datatable">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th width="50"><button class="btn btn-primary btn-sm">Select All</button></th>
-                                        <th>Item Number</th>
-                                        <th>Item Description</th>
-                                        <th>Unit Size</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                        <td>57118</td>
-                                        <td>Kikkoman Tempura Batter Mix</td>
-                                        <td>255 GR</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                        <td>57119</td>
-                                        <td>Kikkoman Tempura Batter Mix</td>
-                                        <td>255 GR</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                        <td>57120</td>
-                                        <td>Kikkoman Tempura Batter Mix</td>
-                                        <td>255 GR</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                        <td>57121</td>
-                                        <td>Kikkoman Tempura Batter Mix</td>
-                                        <td>255 GR</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                        <td>57122</td>
-                                        <td>Kikkoman Tempura Batter Mix</td>
-                                        <td>255 GR</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                        <td>57123</td>
-                                        <td>Kikkoman Tempura Batter Mix</td>
-                                        <td>255 GR</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                        <td>57124</td>
-                                        <td>Kikkoman Tempura Batter Mix</td>
-                                        <td>500 GR</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                        <td>57125</td>
-                                        <td>Kikkoman Tempura Batter Mix</td>
-                                        <td>500 GR</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <hr />
-                            <div class="row py-4 col-12 mx-auto px-0">
-                                <button class="btn btn-lg btn-outline-success btn-block" onclick="Step2()">Update Selected Items</button>
-                            </div>
-                        </div>
-
-                    </section>
-                }
-            }
+            @{Html.RenderPartial("_LaunchBDMStep1"); }
             <div class="modal" id="modalWarningSave" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-danger" role="document">
                     <div class="modal-content">
@@ -440,63 +240,118 @@
                 <a href="#" onclick="Step2()"><i class="fa fa-long-arrow-left pr-2"></i>Previous Step</a>
                 <hr />
                 <div class="mt-2 col-8 mx-auto">
-                    <h5 class="text-muted"><span class="text-primary">Step 3</span> - Select VOR Status for Accounts</h5>
+                    <h5 class="text-muted"><span class="text-primary">Step 3</span> - Select Item Status for Accounts</h5>
                     <br />
                     <table id="table_vor" class="table table-bordered datatable">
                         <thead class="thead-light">
                             <tr>
                                 <th>Key Accounts</th>
-                                <th style="width:200px;">VOR Status</th>
+                                <th style="width:200px;">Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Adonis</td>
-                                <td>
-                                    <select class="form-control">
-                                        <option selected>VOR</option>
-                                        <option>Discussion Required</option>
-                                        <option>Not VOR</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Associated Grocers</td>
-                                <td>
-                                    <select class="form-control">
-                                        <option selected>VOR</option>
-                                        <option>Discussion Required</option>
-                                        <option>Not VOR</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Atlantic Independents</td>
-                                <td>
-                                    <select class="form-control">
-                                        <option selected>VOR</option>
-                                        <option>Discussion Required</option>
-                                        <option>Not VOR</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Loblaws</td>
-                                <td>
-                                    <select class="form-control">
-                                        <option selected>VOR</option>
-                                        <option>Discussion Required</option>
-                                        <option>Not VOR</option>
-                                    </select>
-                                </td>
-                            </tr>
+
+                            @if (ViewBag.a == "create" || ViewBag.a == null | ViewBag.a == "")
+                            {
+                                <tr>
+                                    <td>Metro Ontario</td>
+                                    <td>
+                                        <select class="form-control">
+                                            <option selected>Ready to Present</option>
+                                            <option>Discussion Required</option>
+                                            <option>N/A</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Bargain Shops</td>
+                                    <td>
+                                        <select class="form-control">
+                                            <option selected>Ready to Present</option>
+                                            <option>Discussion Required</option>
+                                            <option>N/A</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Buy Low</td>
+                                    <td>
+                                        <select class="form-control">
+                                            <option selected>Ready to Present</option>
+                                            <option>Discussion Required</option>
+                                            <option>N/A</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Coopers</td>
+                                    <td>
+                                        <select class="form-control">
+                                            <option selected>Ready to Present</option>
+                                            <option>Discussion Required</option>
+                                            <option>N/A</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Loblaw - NATIONAL</td>
+                                    <td>
+                                        <select class="form-control">
+                                            <option selected>Ready to Present</option>
+                                            <option>Discussion Required</option>
+                                            <option>N/A</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            }
+                            else if (ViewBag.a == "update")
+                            {
+                                <tr>
+                                    <td>Loblaw - NATIONAL</td>
+                                    <td>
+                                        <select class="form-control">
+                                            <option>Ready to Present</option>
+                                            <option selected>Discussion Required</option>
+                                            <option>N/A</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            }
+
                         </tbody>
                     </table>
                 </div>
-                <div class="row pt-4">
-                    <button class="btn btn-lg btn-outline-success ml-auto" data-toggle="modal" data-target="#submitlaunch-modal">Finalize Launch</button>
-                </div>
+                @if (ViewBag.a == "create" || ViewBag.a == null | ViewBag.a == "")
+                {
+                    <div class="row pt-4">
+                        <button class="btn btn-lg btn-outline-success ml-auto" data-toggle="modal" data-target="#submitlaunch-modal">Finalize Launch</button>
+                    </div>
+                }
+                else if (ViewBag.a == "update")
+                {
+                    <div class="row pt-4">
+                        <button class="btn btn-lg btn-outline-success ml-auto" data-toggle="modal" data-target="#submitupdate-modal">Finalize Update</button>
+                    </div>
+                }
             </section>
+            <div class="modal fade" id="addcomment-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-danger" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">This item will be deleted</h4>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>This item will unlaunched. All ongoing processes related to items will be removed from the system.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-danger" type="button" data-dismiss="modal">Confirm Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="modal fade" id="deleteitem-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-danger" role="document">
                     <div class="modal-content">
@@ -507,7 +362,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>This item will removed from Launchpad for all users</p>
+                            <p>This item will unlaunched. All ongoing processes related to items will be removed from the system.</p>
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-danger" type="button" data-dismiss="modal">Confirm Delete</button>
@@ -516,20 +371,24 @@
                 </div>
             </div>
             <div class="modal fade" id="submitlaunch-modal" tabindex="-1" role="dialog" aria-labelledby="modalApprove" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modalItemGroup1Label">Confirm submission</h5>
+                            <h5 class="modal-title" id="modalItemGroup1Label">Confirm Launch</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <i class="text-danger"><u>Required</u></i>
+                            <div class="alert alert-warning">
+                                Some items may require samples. Refer to the 'Action Required' section on the homepage.
+                            </div>
+
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="chk-launchpkg">
-                                <label class="custom-control-label" for="chk-launchpkg">Launch package has been sent via email</label>
+                                <label class="custom-control-label" for="chk-launchpkg"> <span class="text-danger"><b>Required*</b></span> Launch package has been sent via email</label>
                             </div>
+
                         </div>
                         <div class="modal-footer">
                             <a id="btn-CompleteApprove" class="btn btn-lg btn-block btn-success disabled" href="@Url.Action("Launchpad", null, new { view = "bdm", controller = "Home" }, Request.Url.Scheme)">Confirm Launch</a>
@@ -537,7 +396,26 @@
                     </div>
                 </div>
             </div>
-
+            <div class="modal fade" id="submitupdate-modal" tabindex="-1" role="dialog" aria-labelledby="modalApprove" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalItemGroup1Label">Confirm Update</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-warning">
+                                Some items may require samples. Refer to the 'Action Required' section on the homepage.
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-lg btn-block btn-success" href="@Url.Action("Launchpad", null, new { view = "bdm", controller = "Home" }, Request.Url.Scheme)">Confirm Update</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -586,13 +464,41 @@
     </script>
 
     <script>
+        $("#btnSearch").on("click", function (event) {
+            showbrandtable();
+        });
         function showbrandtable() {
+            
+            setTimeout(refreshBrandItemsTable, 1500);
+        }
+        function showbrandtableupdate() {
             $("#brandtable").show();
+            $("#step1final").show();
+        }
+        function refreshBrandItemsTable() {
+            $('#table_branditems').DataTable().destroy();
+            $("#table_branditems .group-item").click(function () {
+                $(this).parent().parent().toggleClass("table-info");
+                $(this).children().toggleClass("fa-circle");
+            });
+            $('#table_branditems').DataTable({
+                "columnDefs": [
+                    { "orderable": false, "targets": 0 }
+                ],
+                "order": [[1, "asc"]],
+                initComplete: function () {
+                    $(this.api().table().container()).find('input').parent().wrap('<form>').parent().attr('autocomplete', 'off');
+                }
+            });
+            $("#brandtable").show();
+            $("#step1final").show();
+
         }
         function applycommenttoall(btn) {
             var comment = $("#comment").val();
             btn.closest("section").find(".table-info textarea").val(comment);
             btn.closest("section").find(".table-info").removeClass("table-info");
+            btn.closest("section").find(".fa-circle").removeClass("fa-circle");
             btn.closest("section").find("#comment").val("");
         }
         $("#chk-launchpkg").click(function () {

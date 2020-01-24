@@ -3,8 +3,7 @@
     ViewBag.Title = "Launchpad Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-@model Launchpad.Models.ItemViewModels.SearchViewModel
+@model Launchpad.Models.HomeViewModels.LaunchpadViewModel
 @Styles.Render("~/Content/bs-select")
 @Styles.Render("~/Content/css")
 @Styles.Render("~/Content/Site.css")
@@ -23,17 +22,14 @@
                     <section id="section_review" class="mb-4 p-3 bg-white border">
                         <div class="p-3 d-flex align-items-center">
                             <i class="fa fa-exclamation bg-warning p-3 font-2xl mr-3"></i>
-                            <div>
-                                <div class="text-value-sm text-warning">Activity</div>
-                                @*<div class="text-muted text-uppercase font-weight-bold small">Income</div>*@
-                            </div>
+                            <div class="text-value-sm text-warning">Action Required</div>
                         </div>
                         <table class="table table-bordered datatable" id="table-tasks">
                             <thead class="thead-light">
                                 <tr>
-
-                                    <th>Item #</th>
+                                    <th width="100">Item #</th>
                                     <th>Item Description</th>
+                                    <th>Brand</th>
                                     <th>Account</th>
                                     <th>Banner</th>
                                     <th>Status</th>
@@ -42,19 +38,30 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><a href="@Url.Action("ItemReport", "Home")">90001</a></td>
+                                    <td>90001</td>
                                     <td>Kikkoman Soy Sauce 500ml</td>
+                                    <td>Kikkoman</td>
                                     <td>Loblaws</td>
                                     <td>Fortinos</td>
-                                    <td><i class="fa fa-square text-primary"></i> Pending</td>
+                                    <td><i class="fa fa-square text-dark"></i> Discussion Required</td>
                                     <td>01/05/20</td>
                                 </tr>
                                 <tr>
-                                    <td><a href="@Url.Action("ItemReport", "Home")">90001</a></td>
+                                    <td>90001</td>
                                     <td>Kikkoman Soy Sauce 500ml</td>
+                                    <td>Kikkoman</td>
                                     <td>Loblaws</td>
                                     <td>Nofrills</td>
-                                    <td><i class="fa fa-square text-primary"></i> Pending</td>
+                                    <td><i class="fa fa-square text-dark"></i> Discussion Required</td>
+                                    <td>01/14/20</td>
+                                </tr>
+                                <tr>
+                                    <td>54363</td>
+                                    <td>Kikkoman Tempura Mix 500 GR</td>
+                                    <td>Kikkoman</td>
+                                    <td>Coopers</td>
+                                    <td>-</td>
+                                    <td><i class="fa fa-square text-warning"></i> Samples Required</td>
                                     <td>01/14/20</td>
                                 </tr>
                             </tbody>
@@ -66,13 +73,54 @@
                                 <div class="card-body ">
                                     <div class="p-3 d-flex align-items-center">
                                         <i class="fa fa-barcode bg-primary p-3 font-2xl mr-3"></i>
-                                        <div>
-                                            <div class="text-value-sm text-primary">BDM Launch</div>
-
-                                        </div>
-                                        <a href="@Url.Action("LaunchBDM", null, new { a = "create", controller = "Home" }, Request.Url.Scheme)" class="btn btn-lg btn-primary ml-auto">Launch New</a>
-                                        <a href="@Url.Action("LaunchBDM", null, new { a = "update", controller = "Home" }, Request.Url.Scheme)" class="btn btn-lg btn-outline-primary ml-3">Update Existing</a>
+                                        <div class="text-value-sm text-primary">BDM Launch</div>
+                                        <a href="@Url.Action("LaunchBDM", null, new { a = "create", controller = "Home", step = 1 }, Request.Url.Scheme)" class="btn btn-lg btn-primary ml-auto">Launch New</a>
+                                        <a href="@Url.Action("LaunchBDM", null, new { a = "update", controller = "Home", step = 1  }, Request.Url.Scheme)" class="btn btn-lg btn-outline-primary ml-3">Update Existing</a>
                                     </div>
+                                    <hr />
+                                    <h5 class="text-muted">In Progress SKUs</h5>
+                                    <table class="table table-bordered datatable" id="table-bdm">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th width="100">Item #</th>
+                                                <th>Item Description</th>
+                                                <th>Brand</th>
+                                                <th>Account</th>
+                                                <th>Banner</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>90002</td>
+                                                <td>Kikkoman Soy Sauce 100ml</td>
+                                                <td>Kikkoman</td>
+                                                <td>Loblaws</td>
+                                                <td>Fortinos</td>
+                                                <td><i class="fa fa-square text-primary"></i> Pending</td>
+                                                <td>01/05/20</td>
+                                            </tr>
+                                            <tr>
+                                                <td>90001</td>
+                                                <td>Kikkoman Soy Sauce 250ml</td>
+                                                <td>Kikkoman</td>
+                                                <td>Loblaws</td>
+                                                <td>Fortinos</td>
+                                                <td><i class="fa fa-square text-primary"></i> Pending</td>
+                                                <td>01/05/20</td>
+                                            </tr>
+                                            <tr>
+                                                <td>90123</td>
+                                                <td>Kikkoman Tempura Mix 500 GR</td>
+                                                <td>Kikkoman</td>
+                                                <td>Loblaws</td>
+                                                <td>Fortinos</td>
+                                                <td><i class="fa fa-square text-info"></i> Initial Contact</td>
+                                                <td>01/14/20</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
 
                             </div>
@@ -85,7 +133,7 @@
                         <div class="p-3 d-flex align-items-center">
                             <i class="fa fa-exclamation bg-warning p-3 font-2xl mr-3"></i>
                             <div>
-                                <div class="text-value-sm text-warning">Activity</div>
+                                <div class="text-value-sm text-warning">Action Required</div>
                                 @*<div class="text-muted text-uppercase font-weight-bold small">Income</div>*@
                             </div>
                         </div>
@@ -103,28 +151,28 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><a href="@Url.Action("ItemReport", "Home")">90001</a></td>
+                                    <td>90001</td>
                                     <td>Kikkoman Soy Sauce 255ml</td>
                                     <td>Loblaws</td>
                                     <td>Fortinos</td>
-                                    <td><i class="fa fa-square text-secondary"></i> Not Presented</td>
+                                    <td><i class="fa fa-square text-secondary"></i> Ready to Present</td>
                                     <td>01/05/20</td>
                                 </tr>
                                 <tr>
-                                    <td><a href="@Url.Action("ItemReport", "Home")">90001</a></td>
-                                    <td>Kikkoman Soy Sauce 255ml</td>
-                                    <td>Loblaws</td>
-                                    <td>Nofrills</td>
-                                    <td><i class="fa fa-square text-info"></i> Initiated</td>
-                                    <td>01/14/20</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="@Url.Action("ItemReport", "Home")">90002</a></td>
+                                    <td>90002</td>
                                     <td>Kikkoman Soy Sauce 500ml</td>
                                     <td>Loblaws</td>
-                                    <td>Nofrills</td>
-                                    <td><i class="fa fa-square text-primary"></i> Pending</td>
-                                    <td>01/14/20</td>
+                                    <td>Fortinos</td>
+                                    <td><i class="fa fa-square text-secondary"></i> Ready to Present</td>
+                                    <td>01/05/20</td>
+                                </tr>
+                                <tr>
+                                    <td>90003</td>
+                                    <td>Kikkoman Soy Sauce 750ml</td>
+                                    <td>Loblaws</td>
+                                    <td>Fortinos</td>
+                                    <td><i class="fa fa-square text-secondary"></i> Ready to Present</td>
+                                    <td>01/05/20</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -141,6 +189,40 @@
                                         <a href="@Url.Action("LaunchCDM", null, new { a = "launch", controller = "Home" }, Request.Url.Scheme)" class="btn btn-lg btn-success ml-auto">Launch New</a>
                                         <a href="@Url.Action("LaunchCDM", null, new { a = "update", controller = "Home" }, Request.Url.Scheme)" class="btn btn-lg btn-outline-success ml-3">Update Existing</a>
                                     </div>
+                                    <hr />
+                                    <h5 class="text-muted">In Progress SKUs</h5>
+                                    <table class="table table-bordered datatable" id="table-cdm">
+                                        <thead class="thead-light">
+                                            <tr>
+
+                                                <th>Item #</th>
+                                                <th>Item Description</th>
+                                                <th>Account</th>
+                                                <th>Banner</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <td><a href="@Url.Action("ItemReport", "Home")">90001</a></td>
+                                                <td>Kikkoman Soy Sauce 255ml</td>
+                                                <td>Loblaws</td>
+                                                <td>Nofrills</td>
+                                                <td><i class="fa fa-square text-info"></i> Initiated </td>
+                                                <td>01/14/20</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="@Url.Action("ItemReport", "Home")">90002</a></td>
+                                                <td>Kikkoman Soy Sauce 500ml</td>
+                                                <td>Loblaws</td>
+                                                <td>Nofrills</td>
+                                                <td><i class="fa fa-square text-primary"></i> Pending</td>
+                                                <td>01/14/20</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
 
                             </div>
@@ -165,11 +247,27 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
+            $('#table-bdm').dataTable({
+                "columnDefs": [
+                    { "orderable": true}
+                ],
+                "order": [[0, "asc"]],
+                "lengthChange": false
+            });
+            $('#table-cdm').dataTable({
+                "columnDefs": [
+                    { "orderable": true }
+                ],
+                "order": [[0, "asc"]],
+                "lengthChange": false
+            });
             $('#table-tasks').dataTable({
                 "columnDefs": [
-                    { "orderable": false, "targets": 0 }
+                    { "orderable": true }
                 ],
-                "order": [[5, "desc"]]
+                "searching": false,
+                "order": [[0, "asc"]],
+                "lengthChange": false
             });
             $("#dataTable-record").dataTable({
                 dom: 'Bfrtip',
@@ -214,6 +312,31 @@
                     }
                 }
             });
+            //Chart 3
+            var ctx2 = document.getElementById('chart-summary-sku').getContext('2d');
+            window.myBar = new Chart(ctx2, {
+                type: 'horizontalBar',
+                data: barChartDataSKU,
+                options: {
+                    title: {
+                        display: true,
+                        text: 'SKU Timeline'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            stacked: true,
+                        }],
+                        yAxes: [{
+                            stacked: true
+                        }]
+                    }
+                }
+            });
         });
         function summarytotalsku() {
             var sum = 0;
@@ -224,11 +347,34 @@
         }
         function calcpercsummary() {
             var total = parseInt($("#summary-total").text());
-            for (i = 0; i < 6; i++) {
+            for (i = 0; i < 7; i++) {
                 $(".summaryperc").eq(i).text((parseInt($(".summarydata").eq(i).text()) / total * 100).toFixed(2) + "%");
             }
         }
-
+        function createitemreport() {
+            $("#div-itemreport").show();
+        }
+        function reportsummary() {
+            $(".modal").modal('hide');
+            $("#report section").hide();
+            $("#reportsummary").show();
+            $("#reportgroupaccount").show();
+        }
+        function reportaccountbrand() {
+            $(".modal").modal('hide');
+            $("#report section").hide();
+            $("#reportacountdetails").show();
+        }
+        function reportaccountbrandmodal() {
+            $(".modal").modal('hide');
+            $("#report section").hide();
+            $("#reportacountdetails").show();
+        }
+        function reportitem() {
+            $(".modal").modal('hide');
+            $("#report section").hide();
+            $("#reportitemaccounts").show();
+        }
     </script>
     
     <script async>
@@ -245,9 +391,13 @@
                         $(".summarydata").eq(2).text(),
                         $(".summarydata").eq(3).text(),
                         $(".summarydata").eq(4).text(),
+                        $(".summarydata").eq(5).text(),
+                        $(".summarydata").eq(6).text()
                     ],
                     backgroundColor: [
+                        "#000000",
                         "#CACFD2",
+                        "#ffc107",
                         "#85C1E9",
                         "#3498DB",
                         "#A9DFBF",//green
@@ -255,7 +405,9 @@
                     ]
                 }],
                 labels: [
-                    'Not Presented',
+                    'Discussion Required',
+                    'Ready to Present',
+                    'Samples Required',
                     'Initiated',
                     'Pending',
                     "Accepted",
@@ -273,14 +425,85 @@
 
     </script>
     <script async>
-        var randomScalingFactor = function () {
-            return Math.round(Math.random() * 100);
+        //SKU Timeline
+        var barChartDataSKU = {
+            labels: ['Amazon', 'Walmart', 'Costco', 'Loblaws/Nofrills','Loblaws/Fortinos', 'Sobeys', 'Metro'],
+            datasets: [{
+                label: 'Discussion Required',
+                backgroundColor: "#000000",
+                data: [
+                    $(".sku-status0").eq(0).text(),
+                    $(".sku-status0").eq(1).text(),
+                    $(".sku-status0").eq(2).text(),
+                    $(".sku-status0").eq(3).text(),
+                    $(".sku-status0").eq(4).text(),
+                    $(".sku-status0").eq(5).text(),
+                    $(".sku-status0").eq(6).text()
+                ]
+            }, {
+                label: 'Ready to Present',
+                backgroundColor: "#CACFD2",
+                data: [
+                    $(".sku-status1").eq(0).text(),
+                    $(".sku-status1").eq(1).text(),
+                    $(".sku-status1").eq(2).text(),
+                    $(".sku-status1").eq(3).text(),
+                    $(".sku-status1").eq(4).text(),
+                    $(".sku-status1").eq(5).text(),
+                    $(".sku-status1").eq(6).text()
+                ]
+            }, {
+                label: 'Samples Required',
+                backgroundColor: "#ffc107",
+                data: [
+                    $(".sku-status2").eq(0).text(),
+                    $(".sku-status2").eq(1).text(),
+                    $(".sku-status2").eq(2).text(),
+                    $(".sku-status2").eq(3).text(),
+                    $(".sku-status2").eq(4).text(),
+                    $(".sku-status2").eq(5).text(),
+                    $(".sku-status2").eq(6).text()
+                ]
+            }, {
+                label: 'Initiated',
+                backgroundColor: "#85C1E9",
+                data: [
+                    $(".sku-status3").eq(0).text(),
+                    $(".sku-status3").eq(1).text(),
+                    $(".sku-status3").eq(2).text(),
+                    $(".sku-status3").eq(3).text(),
+                    $(".sku-status3").eq(4).text(),
+                    $(".sku-status3").eq(5).text(),
+                    $(".sku-status3").eq(6).text()
+                ]
+            }, {
+                label: 'Pending',
+                backgroundColor: "#3498DB",
+                data: [
+                    $(".sku-status4").eq(0).text(),
+                    $(".sku-status4").eq(1).text(),
+                    $(".sku-status4").eq(2).text(),
+                    $(".sku-status4").eq(3).text(),
+                    $(".sku-status4").eq(4).text(),
+                    $(".sku-status4").eq(5).text(),
+                    $(".sku-status4").eq(6).text()
+                ]
+                }],
+            options: {
+                responsive: true
+            }
+
         };
+
+    </script>
+    <script async>
+        
         //Group by Account Chart - 1 selected brand = 1 instance
         var barChartData = {
-            labels: ['Walmart', 'Costco', 'Retail', 'Loblaws', 'Sobeys', 'Metro'],
+            
+            labels: ['Walmart', 'Costco West', 'Metro Ontario', 'Loblaw - NATIONAL', 'Sobeys', 'Metro'],
             datasets: [{
-                label: 'Not Presented',
+                label: 'Ready to Present',
                 backgroundColor: "#CACFD2",
                 data: [
                     $(".acc-status1").eq(0).text(),
@@ -312,10 +535,12 @@
                     $(".acc-status3").eq(4).text(),
                     $(".acc-status3").eq(5).text()
                 ]
-            }]
+                }],
+            options: {
+                responsive: true
+            }
 
         };
 
     </script>
-    
 }

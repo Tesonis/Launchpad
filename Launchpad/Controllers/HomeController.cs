@@ -1,5 +1,6 @@
 ﻿using IBM.Data.DB2.iSeries;
-using Launchpad.Models.ItemViewModels;
+using Launchpad.Models;
+using Launchpad.Models.HomeViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,31 +21,86 @@ namespace Launchpad.Controllers
             else {
                 ViewBag.role = view;
             }
-            SearchViewModel vm = new SearchViewModel();
-            vm.Brands = GetBrands();
+            LaunchpadViewModel vm = new LaunchpadViewModel
+            {
+                Brands = GetBrands()
+            };
             ViewBag.name = Request.Cookies["SecToken"]["FullName"];
             return View(vm);
         }
 
         public ActionResult LaunchBDM(string a)
         {
-            SearchViewModel vm = new SearchViewModel();
-            vm.Brands = GetBrands();
+            BDMViewModel vm = new BDMViewModel
+            {
+                Brands = GetBrands()
+            };
             ViewBag.a = a.ToString();
             return View(vm);
         }
+        //Search Brand Items
+        [HttpPost]
+        public ActionResult BrandItems(BDMViewModel vm)
+        {
+            var brandstring = vm.Searchbrand;
+            List<string> keywords = new List<string>(brandstring.Split(' '));
+            List<string> descKeywords = new List<string>();
+            foreach (string str in keywords)
+            {
+                if (str != "")
+                {
+                    descKeywords.Add(str);
+                }
+            }
+            ItemSearch searchquery = new ItemSearch
+            {
+                UPC = "",
+                Description = descKeywords
+                
+            };
+            BDMViewModel newvm = new BDMViewModel
+            {
+                Items = GetItems(searchquery)
+            };
+            return PartialView("_LaunchBDMStep1Table", newvm);
+        }
+        private IEnumerable<BrandItem> GetItems(ItemSearch newsearch)
+        {
+            iDB2DataReader readerITM = null;
+            Item item = new Item();
+            List<BrandItem> itemlist = new List<BrandItem>();
 
+            item.List(Request.Cookies["SecToken"]["SecurityKey"], newsearch, ref readerITM);
+            if (readerITM != null)
+            {
+                while (readerITM.Read())
+                {
+                    var newitem = new BrandItem
+                    {
+                        ItemID = readerITM["ITMITM"].ToString(),
+                        Size = readerITM["ITMDSS"].ToString(),
+                        ItemDescEng = readerITM["ITMEED"].ToString()
+                    };
+                    itemlist.Add(newitem);
+                }
+
+            }
+
+            return itemlist;
+        }
         public ActionResult LaunchCDM(string a)
         {
-            SearchViewModel vm = new SearchViewModel();
-            ViewBag.Brands = GetBrands();
+            CDMViewModel vm = new CDMViewModel
+            {
+                Brands = GetBrands()
+            };
             ViewBag.a = a.ToString();
             return View(vm);
         }
         [HttpGet]
         public ActionResult ItemRecord()
         {
-            SearchViewModel vm = new SearchViewModel();
+            LaunchpadViewModel vm = new LaunchpadViewModel();
             ViewBag.test = "Get Successful";
             return PartialView("_ItemRecord",vm);
         }

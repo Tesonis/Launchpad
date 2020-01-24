@@ -1,0 +1,24 @@
+﻿@model Launchpad.Models.HomeViewModels.BDMViewModel
+@using (Ajax.BeginForm("BrandItems", new AjaxOptions() { HttpMethod = "Post", InsertionMode = System.Web.Mvc.Ajax.InsertionMode.Replace, UpdateTargetId = "brandtable" }))
+{
+    <div class="mt-2">
+        <div class="py-3"><b>Select Brand Manager</b></div>
+        <div class="input-group">
+            <select class="form-control" id="ccyear" required>
+                <option>Keira Hall</option>
+            </select>
+            <div class="input-group-append">
+                <span class="input-group-text">
+                    <i class="fa fa-user"></i>
+                </span>
+            </div>
+        </div>
+        <div class="py-3"><b>Select Brand</b></div>
+        <div class="input-group">
+            @Html.DropDownListFor(x => x.Searchbrand, Model.Brands, new { @class = "selectpicker form-control search-result-filter", data_live_search = "true", data_style = "btn-white border-secondary bg-white", title = "--- No Brand Selected ---", @required = true })
+            <span class="input-group-append">
+                <button class="btn btn-success" type="submit" onclick="showbrandtable()">Search All Items</button>
+            </span>
+        </div>
+    </div>
+}

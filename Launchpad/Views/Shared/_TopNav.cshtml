@@ -22,14 +22,17 @@
         <li class="nav-item px-3">
             <a class="nav-link" href="@Url.Action("Launchpad","home", new { view="cdm"})">CDM View</a>
         </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="@Url.Action("Launchpad","home", new { view="exec"})">Reporting only</a>
+        </li>
     </ul>
     <ul class="nav navbar-nav ml-auto mr-3">
         <span>Welcome, <b><i class="px-1">  @name</i></b></span>
         <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <a href="@Url.Action("Login","account")" class="text-danger">
+            <a class="nav-link text-danger"" data-toggle="dropdown" href="@Url.Action("Login","account")" role="button" aria-haspopup="true" aria-expanded="false">
+
                     <u><i class="fa fa-power-off ml-2"></i> Logout</u>
-                </a>
+
                 @*<img class="img-avatar" src="https://i.pravatar.cc/100" >*@
             </a>
             @*<div class="dropdown-menu dropdown-menu-right">

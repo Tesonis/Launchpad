@@ -16,8 +16,9 @@
                             <div class="col-3">
                                 <div class="py-3"><b>Select Brand</b></div>
                                 <div class="input-group">
-                                    <select class="form-control" id="reportbrand">
+                                    <select class="form-control selectpicker" data-style="btn-white border-secondary bg-white">
                                         <option selected>All</option>
+                                        <option>Carrs</option>
                                         <option>Midel</option>
                                         <option>Kikkoman</option>
                                     </select>
@@ -26,9 +27,9 @@
                             <div class="col-3">
                                 <div class="py-3"><b>Select Account</b></div>
                                 <div class="input-group">
-                                    <select class="form-control" id="ccyear">
+                                    <select class="form-control selectpicker" data-style="btn-white border-secondary bg-white">
                                         <option>All</option>
-                                        <option>Retail</option>
+                                        <option>Walmart</option>
                                         <option>Loblaws</option>
                                         <option>Metro</option>
                                         <option>Sobeys</option>
@@ -36,9 +37,9 @@
                                 </div>
                             </div>
                             <div class="col-3">
-                                <div class="py-3"><b>Select Banner (Optional)</b></div>
+                                <div class="py-3"><b>Select Banner</b></div>
                                 <div class="input-group">
-                                    <select class="form-control" id="ccyear">
+                                    <select class="form-control selectpicker" data-style="btn-white border-secondary bg-white">
                                         <option>All</option>
                                         <option>Nofrills</option>
                                         <option>Fortinos</option>
@@ -49,34 +50,36 @@
                                 <div class="py-3"><b>Status</b></div>
                                 <div class="input-group">
                                     <!--Add select Multiple-->
-                                    <select class="form-control" id="ccyear">
-                                        <option selected>All</option>
-                                        <option>Not VOR</option>
-                                        <option>Not presented</option>
-                                        <option>VOR Change Initiated</option>
-                                        <option>Vor Change Complete</option>
-                                        <option>Initial Contact</option>
-                                        <option>Initial Meeting</option>
-                                        <option>Launch Package Sent</option>
-                                        <option>Pending</option>
-                                        <option>Accepted</option>
-                                        <option>Declined By Retailer</option>
-                                        <option>Declined By Client</option>
+                                    <select class="form-control selectpicker" data-style="btn-white border-secondary bg-white">
+                                        <option data-content="All"></option>
+                                        <option data-content="<i class='fa fa-square text-dark'></i> N/A"></option>
+                                        <option data-content="<i class='fa fa-square text-dark'></i> Discussion Required"></option>
+                                        <option data-content="<i class='fa fa-square text-secondary'></i> Ready to Present"></option>
+                                        <option data-content="<i class='fa fa-square text-warning'></i> Samples Required"></option>
+                                        <option data-content="<i class='fa fa-square text-info'></i> VOR Change Initiated"></option>
+                                        <option data-content="<i class='fa fa-square text-info'></i> Vor Change Complete"></option>
+                                        <option data-content="<i class='fa fa-square text-info'></i> Initial Contact"></option>
+                                        <option data-content="<i class='fa fa-square text-info'></i> Initial Meeting"></option>
+                                        <option data-content="<i class='fa fa-square text-info'></i> Launch Package Sent"></option>
+                                        <option data-content="<i class='fa fa-square text-primary'></i> Pending"></option>
+                                        <option data-content="<i class='fa fa-square text-success'></i> Accepted"></option>
+                                        <option data-content="<i class='fa fa-square text-danger'></i> Declined By Retailer"></option>
+                                        <option data-content="<i class='fa fa-square text-danger'></i> Declined By Client"></option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="col-12 mt-3">
                                 <span class="input-group-append">
-                                    <button class="btn btn-info btn-block text-white" type="button">Search Items</button>
+                                    <button class="btn btn-info btn-block text-white" type="button" onclick="createitemreport()">Search Items</button>
                                 </span>
                             </div>
 
                         </div>
                     }
                     <hr />
-                    <div class="table-responsive">
-                        <table class="table table-bordered datatable" id="dataTable-record">
+                    <div class="table-responsive" style="display:none;" id="div-itemreport">
+                        <table class="table table-bordered datatable w-100" id="dataTable-record">
                             <!--Filter by Account-->
                             <!--Filter by Banner-->
                             <!--Filter by Brand-->
@@ -113,7 +116,7 @@
                                     <td>Kikkoman Soy Sauce 255ml</td>
                                     <td>01/01/2020</td>
                                     <td><textarea rows="2" class="form-control">Example Launch Comment</textarea></td>
-                                    <td>Pending</td>
+                                    <td><i class='fa fa-square text-primary'></i> Pending</td>
                                     <td>01/15/2020</td>
                                     <td hidden>-</td>
                                     <td><textarea rows="2" class="form-control">Example Status Comment</textarea></td>
@@ -133,7 +136,7 @@
                                     <td>Kikkoman Soy Sauce 500ml</td>
                                     <td>01/01/2020</td>
                                     <td><textarea rows="2" class="form-control">Example Launch Comment</textarea></td>
-                                    <td>Pending</td>
+                                    <td><i class='fa fa-square text-primary'></i> Pending</td>
                                     <td>01/15/2020</td>
                                     <td hidden>-</td>
                                     <td><textarea rows="2" class="form-control">Example Status Comment</textarea></td>
@@ -146,12 +149,18 @@
 
                             </tbody>
                         </table>
+                        <hr />
+                        <button id="btn-itemrecordexcel" class="btn btn-block btn-outline-success" onclick="$(this).parent().find('.buttons-excel').click()">Export To Excel</button>
                     </div>
-                    <hr />
-                    <button id="btn-itemrecordexcel" class="btn btn-block btn-outline-success" onclick="$(this).parent().find('.buttons-excel').click()">Export To Excel</button>
+                    
                 </div>
 
             </div>
         </div>
     </div>
 </section>
+@section Scripts
+{
+    
+    
+}

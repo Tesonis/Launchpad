@@ -1,0 +1,25 @@
+﻿@model Launchpad.Models.HomeViewModels.BDMViewModel
+<table id="table_branditems" class="table table-bordered datatable">
+    <thead class="thead-light">
+        <tr>
+            <th width="50"><button class="btn btn-primary btn-sm">Select All</button></th>
+            <th>Item Number</th>
+            <th>Item Description</th>
+            <th>Unit Size</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Items != null)
+        {
+            foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
+                    <td>@item.ItemID</td>
+                    <td>@item.ItemDescEng</td>
+                    <td>@item.Size</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

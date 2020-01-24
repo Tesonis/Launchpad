@@ -134,7 +134,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels\LoginViewModel.cs" />
-    <Compile Include="Models\ItemViewModels\SearchViewModel.cs" />
+    <Compile Include="Models\BrandItem.cs" />
+    <Compile Include="Models\HomeViewModels\CDMViewModel.cs" />
+    <Compile Include="Models\HomeViewModels\BDMViewModel.cs" />
+    <Compile Include="Models\HomeViewModels\LaunchpadViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -414,6 +417,9 @@
     <Content Include="Views\Shared\_ItemRecord.cshtml" />
     <Content Include="Views\Home\ItemReport.cshtml" />
     <Content Include="Views\Shared\_LaunchpadReport.cshtml" />
+    <Content Include="Views\Shared\_LaunchBDMStep1.cshtml" />
+    <Content Include="Views\Shared\_LaunchBDMStep1Table.cshtml" />
+    <Content Include="Views\Shared\_LaunchBDMStep1Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

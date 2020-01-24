@@ -1,0 +1,139 @@
+﻿@model Launchpad.Models.HomeViewModels.BDMViewModel
+
+<section id="step1" class="step mx-auto col-8">
+    @if (ViewBag.a == "create" || ViewBag.a == null | ViewBag.a == "")
+    {
+        <h5 class="text-muted">
+            <span class="text-primary">Step 1</span> - Select Products to Launch
+        </h5>
+        { Html.RenderPartial("_LaunchBDMStep1Form"); }
+        //Div for Ajax search target
+        <hr />
+        <div id="brandtable" style="display:none;">
+
+            @{Html.RenderPartial("_LaunchBDMStep1Table"); }
+
+        </div>
+        <hr />
+        //Create only
+        <div id="step1final" style="display:none;">
+            <div class="form-group">
+                <div class="py-3">
+                    <b>Select Launch Type:</b>
+                </div>
+                <select class="form-control pl-2" id="sel1">
+                    <option>Line Extension</option>
+                    <option>New Brand</option>
+                </select>
+            </div>
+            <hr />
+            <div class="row py-4 col-12 mx-auto px-0">
+                <a class="btn btn-lg btn-outline-success btn-block" onclick="Step2()" href="#?">Launch Selected Items</a>
+            </div>
+        </div>
+
+    }
+    else if (ViewBag.a == "update")
+    {
+        <h5 class="text-muted">
+            <span class="text-primary">Step 1</span> - Select Products to Update
+        </h5>
+        <div class="mt-2">
+            <div class="py-2">
+                <b>Select Brand Manager</b>
+            </div>
+            <div class="input-group">
+                <select class="form-control" id="ccyear" required>
+                    <option>Keira Hall</option>
+                </select>
+                <div class="input-group-append">
+                    <span class="input-group-text">
+                        <i class="fa fa-user"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="py-2">
+                <b>Select Brand</b>
+            </div>
+            <div class="input-group">
+                @Html.DropDownListFor(x => x.Searchbrand, Model.Brands, new { @class = "selectpicker form-control search-result-filter", data_live_search = "true", data_style = "btn-white border-secondary bg-white", title = "--- No Brand Selected ---", @required = true })
+                
+            </div>
+            <div class="py-2">
+                <b>Select Account</b>
+            </div>
+            <div class="input-group">
+                <select class="form-control" id="ccyear" required>
+                    <option>All</option>
+                    <option>Loblaw - National</option>
+                </select>
+                <span class="input-group-append">
+                    <button class="btn btn-success" type="button" onclick="showbrandtableupdate()">Search All Items</button>
+                </span>
+            </div>
+        </div>
+        <hr />
+        <div id="brandtable" style="display:none">
+            <table id="table_branditems" class="table table-bordered datatable">
+                <thead class="thead-light">
+                    <tr>
+                        <th width="50">
+                            <button class="btn btn-primary btn-sm">Select All</button>
+                        </th>
+                        <th>Item Number</th>
+                        <th>Item Description</th>
+                        <th>Unit Size</th>
+                        <th>Account</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a>
+                        </td>
+                        <td>90001</td>
+                        <td>Kikkoman Soy Sauce 500ml</td>
+                        <td>255 ml</td>
+                        <td>Loblaws</td>
+                        <td>
+                            <i class="fa fa-square text-dark"></i> Discussion Required
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a>
+                        </td>
+                        <td>90002</td>
+                        <td>Kikkoman Soy Sauce 500ml</td>
+                        <td>500 ml</td>
+                        <td>Loblaws</td>
+                        <td>
+                            <i class="fa fa-square text-dark"></i> Discussion Required
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a>
+                        </td>
+                        <td>90003</td>
+                        <td>Kikkoman Soy Sauce 500ml</td>
+                        <td>750 ml</td>
+                        <td>Loblaws</td>
+                        <td>
+                            <i class="fa fa-square text-dark"></i> Discussion Required
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+        </div>
+        
+        //Update only
+        <div id="step1final" style="display:none;">
+            <div class="row py-4 col-12 mx-auto px-0">
+                <a class="btn btn-lg btn-outline-success btn-block" onclick="Step2()" href="#?">Update Selected Items</a>
+            </div>
+        </div>
+    }
+</section>

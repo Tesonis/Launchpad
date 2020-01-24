@@ -3,7 +3,7 @@
     ViewBag.Title = "CDM Item Launch";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model Launchpad.Models.ItemViewModels.SearchViewModel
+@model Launchpad.Models.HomeViewModels.CDMViewModel
 @Styles.Render("~/Content/bs-select")
 @Styles.Render("~/Content/css")
 @Styles.Render("~/Content/Site.css")
@@ -20,8 +20,8 @@
         <ul class="progressbar col-12">
             <li class="active">Select Items</li>
             <li>Update Status</li>
-            <li>Update Details (Optional)</li>
-            <li>Review</li>
+            <li>Update Details</li>
+            <li>Review & Set Follow Up</li>
         </ul>
     </div>
     <hr />
@@ -35,8 +35,8 @@
                     <div class="col-3">
                         <div class="py-3"><b>Select CDM</b></div>
                         <div class="input-group">
-                            <select class="form-control" id="ccyear">
-                                <option>Terry Huang</option>
+                            <select class="form-control selectpicker bg-white btn-white border-secondary" data-live-search="true" data-style="btn-white border-secondary bg-white">
+                                <option>Cathy Pye</option>
                             </select>
                             <div class="input-group-append">
                                 <span class="input-group-text">
@@ -48,33 +48,31 @@
                     <div class="col-3">
                         <div class="py-3"><b>Select Account</b></div>
                         <div class="input-group">
-                            <select class="form-control" id="ccyear">
+                            <select class="form-control selectpicker bg-white btn-white border-secondary" data-style="btn-white border-secondary bg-white">
                                 <option selected>All</option>
-                                <option>Retail</option>
                                 <option>Loblaws</option>
-                                <option>Metro</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-3">
-                        <div class="py-3"><b>Select Banner (Optional)</b></div>
+                        <div class="py-3"><b>Select Banner</b></div>
                         <div class="input-group">
-                            <select class="form-control" id="ccyear">
+                            <select class="form-control selectpicker bg-white btn-white border-secondary" data-style="btn-white border-secondary bg-white">
                                 <option selected>All</option>
-                                <option>Nofrills</option>
+                                <option>Fortinos</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="py-3"><b>Select Brand</b></div>
                         <div class="input-group">
-                            @Html.DropDownListFor(x => x.Brands, Model.Brands, new { @class = "selectpicker form-control search-result-filter", data_live_search = "true", data_style = "btn-white border-secondary", title = "--- No Brand Selected ---" })
+                            @Html.DropDownListFor(x => x.Brands, Model.Brands, new { @class = "selectpicker form-control search-result-filter", data_live_search = "true", data_style = "btn-white border-secondary bg-white", title = "--- No Brand Selected ---" })
 
                         </div>
                     </div>
                     <div class="col-12 mt-3">
                         <span class="input-group-append">
-                            <button class="btn btn-success btn-block" type="button" onclick="showbrandtable()">Show Items</button>
+                            <button class="btn btn-outline-success btn-block" type="button" onclick="showbrandtable()">Search Items</button>
                         </span>
                     </div>
 
@@ -82,69 +80,56 @@
                 <hr />
                 @if (ViewBag.a == "launch")
                 {
-                    <div id="brandtable">
+                    <div id="brandtable" style="display:none">
                         <table id="table_branditems" class="table table-bordered datatable">
                             <thead class="thead-light">
                                 <tr>
                                     <th width="50"><button class="btn btn-primary btn-sm">Select All</button></th>
                                     <th width="50">Item #</th>
                                     <th>Item Description</th>
+                                    <th>Unit Size</th>
                                     <th>Account</th>
                                     <th>Banner</th>
-                                    <th>Unit Size</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><a class="group-item"><i class="fa fa-times-circle-o"></i></a></td>
+                                    <td><a><i class="fa fa-times-circle-o"></i></a></td>
                                     <td>57118</td>
-                                    <td>Kikkoman Tempura Batter Mix 255</td>
+                                    <td>Kikkoman Tempura Batter Mix 255 GR</td>
                                     <td>255 GR</td>
                                     <td>Loblaws</td>
                                     <td>Nofrills</td>
-                                    <td>Not VOR</td>
+                                    <td><i class="fa fa-square text-dark"></i> Discussion Required</td>
                                 </tr>
                                 <tr>
                                     <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                    <td>57118</td>
-                                    <td>Kikkoman Tempura Batter Mix</td>
-                                    <td>255 GR</td>
-                                    <td>Sobeys</td>
-                                    <td>-</td>
-                                    <td>Not Presented</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                    <td>57118</td>
-                                    <td>Kikkoman Tempura Batter Mix</td>
-
-                                    <td>255 GR</td>
-                                    <td>Metro</td>
-                                    <td>-</td>
-                                    <td>Not Presented</td>
-                                </tr>
-                                
-                                
-                                <tr>
-                                    <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                    <td>90003</td>
-                                    <td>Kikkoman Soy Sauce</td>
-                                    <td>750 ml</td>
+                                    <td>90001</td>
+                                    <td>Kikkoman Soy Sauce 255ml</td>
+                                    <td>255 ml</td>
                                     <td>Loblaws</td>
-                                    <td>Nofrills</td>
-                                    <td>Not Presented</td>
+                                    <td>Fortinos</td>
+                                    <td><i class="fa fa-square text-secondary"></i> Ready to Present</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
+                                    <td>90002</td>
+                                    <td>Kikkoman Soy Sauce 500ml</td>
+                                    <td>500 ml</td>
+                                    <td>Loblaws</td>
+                                    <td>Fortinos</td>
+                                    <td><i class="fa fa-square text-secondary"></i> Ready to Present</td>
                                 </tr>
                                 <tr>
                                     <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
                                     <td>90003</td>
-                                    <td>Kikkoman Soy Sauce</td>
+                                    <td>Kikkoman Soy Sauce 750ml</td>
                                     <td>750 ml</td>
                                     <td>Loblaws</td>
                                     <td>Fortinos</td>
-                                    <td>Not Presented</td>
+                                    <td><i class="fa fa-square text-secondary"></i> Ready to Present</td>
                                 </tr>
-                                
                             </tbody>
                         </table>
                         <hr />
@@ -152,16 +137,16 @@
                 }
                 else if (ViewBag.a == "update" || ViewBag.a == null || ViewBag.a == "")
                 {
-                <div id="brandtable">
+                <div id="brandtable" style="display:none">
                     <table id="table_branditems" class="table table-bordered datatable">
                         <thead class="thead-light">
                             <tr>
                                 <th width="50"><button class="btn btn-primary btn-sm">Select All</button></th>
                                 <th width="50">Item #</th>
                                 <th>Item Description</th>
+                                <th>Unit Size</th>
                                 <th>Account</th>
                                 <th>Banner</th>
-                                <th>Unit Size</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -174,8 +159,7 @@
                                 <td>255 GR</td>
                                 <td>Loblaws</td>
                                 <td>Fortinos</td>
-
-                                <td>Initiated Contact</td>
+                                <td><i class="fa fa-square text-info"></i> Initiated Contact</td>
                             </tr>
                             <tr>
                                 <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
@@ -184,8 +168,7 @@
                                 <td>255 GR</td>
                                 <td>Loblaws</td>
                                 <td>Fortinos</td>
-
-                                <td>Pending</td>
+                                <td><i class="fa fa-square text-primary"></i> Pending</td>
                             </tr>
                             
                             <tr>
@@ -195,14 +178,14 @@
                                 <td>255 GR</td>
                                 <td>Loblaws</td>
                                 <td>Fortinos</td>
-                                <td>Pending</td>
+                                <td><i class="fa fa-square text-primary"></i> Pending</td>
                             </tr>
                         </tbody>
                     </table>
                     <hr />
                 </div>
                 }
-                <div class="row py-5 col-12 mx-auto">
+                <div class="row py-5 col-12 mx-auto" id="step1final" style="display:none">
                     <button class="btn btn-lg btn-outline-success btn-block" onclick="Step2()">Next Step</button>
                 </div>
                 
@@ -215,181 +198,195 @@
                     <div class="col-6">
                         <div class="form-group col-12">
                             <label for="sel1">Status:</label>
-                            <select class="form-control">
-                                <option>Not VOR</option>
-                                <option>Not presented</option>
-                                <option>VOR Change Initiated</option>
-                                <option>Vor Change Complete</option>
-                                <option>Initial Contact</option>
-                                <option>Initial Meeting</option>
-                                <option>Launch Package Sent</option>
-                                <option>Pending</option>
-                                <option>Accepted</option>
-                                <option>Declined By Retailer</option>
-                                <option>Declined By Client</option>
+                            <select class="form-control selectpicker" data-style="btn-white border-secondary bg-white">
+                                <option value="" selected disabled>--- Select status ---</option>
+                                <option data-content="<i class='fa fa-square text-warning'></i> Samples Required"></option>
+                                <option data-content="<i class='fa fa-square text-info'></i> VOR Change Initiated"></option>
+                                <option data-content="<i class='fa fa-square text-info'></i> Vor Change Complete"></option>
+                                <option data-content="<i class='fa fa-square text-info'></i> Initial Contact"></option>
+                                <option data-content="<i class='fa fa-square text-info'></i> Initial Meeting"></option>
+                                <option data-content="<i class='fa fa-square text-info'></i> Launch Package Sent"></option>
+                                <option data-content="<i class='fa fa-square text-primary'></i> Pending"></option>
+                                <option data-content="<i class='fa fa-square text-success'></i> Accepted"></option>
+                                <option data-content="<i class='fa fa-square text-danger'></i> Declined By Retailer"></option>
+                                <option data-content="<i class='fa fa-square text-danger'></i> Declined By Client"></option>
                             </select>
                         </div>
                         <div class="form-group col-12">
-                            <label for="comment">Follow Up Date:</label>
-                            <input type="date" class="form-control">
+                            <label for="comment">Comment:</label>
+                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-block btn-primary" onclick="applycommenttoall()">Apply values to Selected</button>
                         </div>
                     </div>
-                    <div class="form-group col-6">
-                        <label for="comment">Comment:</label>
-                        <textarea class="form-control" rows="5" id="comment"></textarea>
-                    </div>
-                    <div class="col-12">
-                        <button class="btn btn-block btn-primary" onclick="applycommenttoall()">Apply values to Selected</button>
-                    </div>
+                    
 
                 </div>
                 <hr />
-                <div id="launchtable" class="table-responsive">
-                    <table id="table_groupitems" class="table table-bordered datatable">
-                        <thead class="thead-light">
-                            <tr>
-                                <th width="50"><button class="btn btn-primary btn-sm">Select All</button></th>
-                                <th width="50">Item #</th>
-                                <th>Item Description</th>
-                                <th width="100">Account</th>
-                                <th width="100">Banner</th>
-                                <th width="100">Unit Size</th>
-                                <th width="200">Status</th>
-                                <th width="125">Follow Up Date</th>
-                                <th width="300">Comment</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                <td>57118</td>
-                                <td>Kikkoman Tempura Batter Mix</td>
-                                <td>Loblaws</td>
-                                <td>Fortinos</td>
-                                <td>255 GR</td>
-                                <td>
-                                    <select class="form-control">
-                                        <option>Not VOR</option>
-                                        <option>Not presented</option>
-                                        <option>VOR Change Initiated</option>
-                                        <option>Vor Change Complete</option>
-                                        <option>Initial Contact</option>
-                                        <option>Initial Meeting</option>
-                                        <option>Launch Package Sent</option>
-                                        <option>Pending</option>
-                                        <option>Accepted</option>
-                                        <option>Declined By Retailer</option>
-                                        <option>Declined By Client</option>
-                                    </select>
-                                </td>
-                                <td><input type="date" class="form-control"></td>
-                                <td><div><textarea class="form-control commenttable" rows="2" id="comment1"></textarea></div></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                <td>57112</td>
-                                <td>Kikkoman Tempura Batter Mix</td>
-                                <td>Loblaws</td>
-                                <td>Fortinos</td>
-                                <td>255 GR</td>
-                                <td>
-                                    <select class="form-control">
-                                        <option>Not VOR</option>
-                                        <option>Not presented</option>
-                                        <option>VOR Change Initiated</option>
-                                        <option>Vor Change Complete</option>
-                                        <option>Initial Contact</option>
-                                        <option>Initial Meeting</option>
-                                        <option>Launch Package Sent</option>
-                                        <option>Pending</option>
-                                        <option>Accepted</option>
-                                        <option>Declined By Retailer</option>
-                                        <option>Declined By Client</option>
-                                    </select>
-                                </td>
-                                <td><input type="date" class="form-control"></td>
-                                <td><div><textarea class="form-control commenttable" rows="2" id="comment2"></textarea></div></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                <td>57117</td>
-                                <td>Kikkoman Tempura Batter Mix</td>
-                                <td>Loblaws</td>
-                                <td>Fortinos</td>
-                                <td>255 GR</td>
-                                <td>
-                                    <select class="form-control">
-                                        <option>Not VOR</option>
-                                        <option>Not presented</option>
-                                        <option>VOR Change Initiated</option>
-                                        <option>Vor Change Complete</option>
-                                        <option>Initial Contact</option>
-                                        <option>Initial Meeting</option>
-                                        <option>Launch Package Sent</option>
-                                        <option>Pending</option>
-                                        <option>Accepted</option>
-                                        <option>Declined By Retailer</option>
-                                        <option>Declined By Client</option>
-                                    </select>
-                                </td>
-                                <td><input type="date" class="form-control"></td>
-                                <td><div><textarea class="form-control commenttable" rows="2" id="comment3"></textarea></div></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                <td>57128</td>
-                                <td>Kikkoman Tempura Batter Mix</td>
-                                <td>Metro</td>
-                                <td>-</td>
-                                <td>255 GR</td>
-                                <td>
-                                    <select class="form-control">
-                                        <option>Not VOR</option>
-                                        <option>Not presented</option>
-                                        <option>VOR Change Initiated</option>
-                                        <option>Vor Change Complete</option>
-                                        <option>Initial Contact</option>
-                                        <option>Initial Meeting</option>
-                                        <option>Launch Package Sent</option>
-                                        <option>Pending</option>
-                                        <option>Accepted</option>
-                                        <option>Declined By Retailer</option>
-                                        <option>Declined By Client</option>
-                                    </select>
-                                </td>
-                                <td><input type="date" class="form-control"></td>
-                                <td><div><textarea class="form-control" rows="2" id="comment4"></textarea></div></td>
+                @if (ViewBag.a == "launch")
+                {
+                    <div id="launchtable" class="table-responsive">
+                        <table id="table_groupitems" class="table table-bordered datatable">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th width="50"><button class="btn btn-primary btn-sm">Select All</button></th>
+                                    <th width="50">Item #</th>
+                                    <th>Item Description</th>
+                                    <th width="100">Unit Size</th>
+                                    <th width="100">Account</th>
+                                    <th width="100">Banner</th>
+                                    <th width="200">Status</th>
+                                    <th >Comment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
+                                    <td>90001</td>
+                                    <td>Kikkoman Soy Sauce 255ml</td>
+                                    <td>255 ml</td>
+                                    <td>Loblaws</td>
+                                    <td>Fortinos</td>
+                                    <td>
+                                        <select class="form-control selectpicker" data-style="btn-white border-secondary bg-white">
+                                            <option data-content="<i class='fa fa-square text-secondary'></i> Ready to Present" selected disabled></option>
+                                            <option data-content="<i class='fa fa-square text-warning'></i> Samples Required"></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> VOR Change Initiated"></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> Vor Change Complete"></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> Initial Contact"></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> Initial Meeting"></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> Launch Package Sent"></option>
+                                            <option data-content="<i class='fa fa-square text-primary'></i> Pending"></option>
+                                            <option data-content="<i class='fa fa-square text-success'></i> Accepted"></option>
+                                            <option data-content="<i class='fa fa-square text-danger'></i> Declined By Retailer"></option>
+                                            <option data-content="<i class='fa fa-square text-danger'></i> Declined By Client"></option>
+                                        </select>
+                                    </td>
+                                    <td><div><textarea class="form-control commenttable" rows="2" id="comment1"></textarea></div></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
+                                    <td>90002</td>
+                                    <td>Kikkoman Soy Sauce 500ml</td>
+                                    <td>500 ml</td>
+                                    <td>Loblaws</td>
+                                    <td>Fortinos</td>
+                                    <td>
+                                        <select class="form-control selectpicker" data-style="btn-white border-secondary bg-white">
+                                            <option data-content="<i class='fa fa-square text-secondary'></i> Ready to Present" selected disabled></option>
+                                            <option data-content="<i class='fa fa-square text-warning'></i> Samples Required"></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> VOR Change Initiated"></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> Vor Change Complete"></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> Initial Contact"></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> Initial Meeting"></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> Launch Package Sent"></option>
+                                            <option data-content="<i class='fa fa-square text-primary'></i> Pending"></option>
+                                            <option data-content="<i class='fa fa-square text-success'></i> Accepted"></option>
+                                            <option data-content="<i class='fa fa-square text-danger'></i> Declined By Retailer"></option>
+                                            <option data-content="<i class='fa fa-square text-danger'></i> Declined By Client"></option>
+                                        </select>
+                                    </td>
+                                    <td><div><textarea class="form-control commenttable" rows="2" id="comment2"></textarea></div></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
+                                    <td>90003</td>
+                                    <td>Kikkoman Soy Sauce 750ml</td>
+                                    <td>750 ml</td>
+                                    <td>Loblaws</td>
+                                    <td>Fortinos</td>
+                                    <td>
+                                        <select class="form-control selectpicker" data-style="btn-white border-secondary bg-white">
+                                            <option data-content="<i class='fa fa-square text-secondary'></i> Ready to Present" selected disabled></option>
+                                            <option data-content="<i class='fa fa-square text-warning'></i> Samples Required"></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> VOR Change Initiated"></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> Vor Change Complete"></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> Initial Contact"></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> Initial Meeting"></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> Launch Package Sent"></option>
+                                            <option data-content="<i class='fa fa-square text-primary'></i> Pending"></option>
+                                            <option data-content="<i class='fa fa-square text-success'></i> Accepted"></option>
+                                            <option data-content="<i class='fa fa-square text-danger'></i> Declined By Retailer"></option>
+                                            <option data-content="<i class='fa fa-square text-danger'></i> Declined By Client"></option>
+                                        </select>
+                                    </td>
+                                    <td><div><textarea class="form-control commenttable" rows="2" id="comment3"></textarea></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr />
+                    </div>
+                }
+                else
+                {
+                    <div id="launchtable" class="table-responsive">
+                        <table id="table_groupitems" class="table table-bordered datatable">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th width="50"><button class="btn btn-primary btn-sm">Select All</button></th>
+                                    <th width="50">Item #</th>
+                                    <th>Item Description</th>
+                                    <th width="100">Unit Size</th>
+                                    <th width="100">Account</th>
+                                    <th width="100">Banner</th>
+                                    <th width="200">Status</th>
+                                    <th>Comment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
+                                    <td>90001</td>
+                                    <td>Kikkoman Soy Sauce 255ml</td>
+                                    <td>255 ml</td>
+                                    <td>Loblaws</td>
+                                    <td>Fortinos</td>
+                                    <td>
+                                        <select class="form-control selectpicker" data-style="btn-white border-secondary bg-white">
+                                            <option data-content="<i class='fa fa-square text-warning'></i> Samples Required" disabled></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> VOR Change Initiated"></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> Vor Change Complete"></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> Initial Contact" selected></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> Initial Meeting"></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> Launch Package Sent"></option>
+                                            <option data-content="<i class='fa fa-square text-primary'></i> Pending"></option>
+                                            <option data-content="<i class='fa fa-square text-success'></i> Accepted"></option>
+                                            <option data-content="<i class='fa fa-square text-danger'></i> Declined By Retailer"></option>
+                                            <option data-content="<i class='fa fa-square text-danger'></i> Declined By Client"></option>
+                                        </select>
+                                    </td>
+                                    <td><div><textarea class="form-control commenttable" rows="2" id="comment1"></textarea></div></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
+                                    <td>90002</td>
+                                    <td>Kikkoman Soy Sauce 500ml</td>
+                                    <td>500 ml</td>
+                                    <td>Loblaws</td>
+                                    <td>Fortinos</td>
+                                    <td>
+                                        <select class="form-control selectpicker" data-style="btn-white border-secondary bg-white">
+                                            <option data-content="<i class='fa fa-square text-warning'></i> Samples Required" disabled></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> VOR Change Initiated" disabled></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> Vor Change Complete" disabled></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> Initial Contact" disabled></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> Initial Meeting" disabled></option>
+                                            <option data-content="<i class='fa fa-square text-info'></i> Launch Package Sent" disabled></option>
+                                            <option data-content="<i class='fa fa-square text-primary'></i> Pending" selected></option>
+                                            <option data-content="<i class='fa fa-square text-success'></i> Accepted"></option>
+                                            <option data-content="<i class='fa fa-square text-danger'></i> Declined By Retailer"></option>
+                                            <option data-content="<i class='fa fa-square text-danger'></i> Declined By Client"></option>
 
-                            </tr>
-                            <tr>
-                                <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
-                                <td>55342</td>
-                                <td>Kikkoman Tempura Batter Mix</td>
-                                <td>Metro</td>
-                                <td>-</td>
-                                <td>500 GR</td>
-                                <td>
-                                    <select class="form-control">
-                                        <option>Not VOR</option>
-                                        <option>Not presented</option>
-                                        <option>VOR Change Initiated</option>
-                                        <option>Vor Change Complete</option>
-                                        <option>Initial Contact</option>
-                                        <option>Initial Meeting</option>
-                                        <option>Launch Package Sent</option>
-                                        <option>Pending</option>
-                                        <option>Accepted</option>
-                                        <option>Declined By Retailer</option>
-                                        <option>Declined By Client</option>
-                                    </select>
-                                </td>
-                                <td><input type="date" class="form-control"></td>
-                                <td><div><textarea class="form-control" rows="2" id="comment5"></textarea></div></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <hr />
-                </div>
+                                        </select>
+                                    </td>
+                                    <td><div><textarea class="form-control commenttable" rows="2" id="comment2"></textarea></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr />
+                    </div>
+                }
                 <hr />
                 <div class="row pt-4">
                     <button class="btn btn-lg btn-outline-success btn-block" onclick="Step3()">Next Step</button>
@@ -397,7 +394,7 @@
             </section>
             <section id="step3" class="mt-3 step d-none">
                 <a href="#?" onclick="Step2()"><i class="fa fa-long-arrow-left pr-2"></i>Previous Step</a><hr />
-                <h5 class="text-muted py-3"><span class="text-primary">Step 3</span> - Update Details (Optional)</h5>
+                <h5 class="text-muted py-3"><span class="text-primary">Step 3</span> - Update Details</h5>
                 <div class="col-12 row p-0">
                     <div class="col-4">
                         <div class="form-group col-12">
@@ -433,15 +430,14 @@
                         <thead class="thead-light">
                             <tr>
                                 <th width="50"><button class="btn btn-primary btn-sm">Select All</button></th>
-                                <th>Item Description</th>
+                                <th width="200">Item Description</th>
                                 <th width="100">Unit Size</th>
                                 <th width="100">Account</th>
                                 <th width="100">Banner</th>
                                 <th width="150">Category</th>
-                                <th width="150">POG Review Date</th>
-                                <th width="150">POG Drop Date</th>
-                                <th width="300">Contact Info</th>
-                                <th width="300">Competitive Info</th>
+                                <th width="150">POG Dates</th>
+                                <th>Contact Info</th>
+                                <th>Competitive Info</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -452,10 +448,18 @@
                                 <td>Metro</td>
                                 <td>-</td>
                                 <td><input type="text" class="form-control" /></td>
-                                <td><input type="date" class="form-control"></td>
-                                <td><input type="date" class="form-control"></td>
-                                <td><div><textarea class="form-control commenttable" rows="2" id="comment1"></textarea></div></td>
-                                <td><div><textarea class="form-control commenttable" rows="2" id="comment2"></textarea></div></td>
+                                <td>
+                                    <div class="form-group mb-1">
+                                        <label for="pogreview">Review:</label>
+                                        <input id="pogreview" type="date" class="form-control form-control-sm" />
+                                    </div>
+                                    <div class="form-group m-0">
+                                        <label for="pogdrop">Drop:</label>
+                                        <input id="pogdrop" type="date" class="form-control form-control-sm" />
+                                    </div>
+                                </td>
+                                <td><div><textarea class="form-control commenttable" rows="5" id="comment1"></textarea></div></td>
+                                <td><div><textarea class="form-control commenttable" rows="5" id="comment2"></textarea></div></td>
                             </tr>
 
                         </tbody>
@@ -469,37 +473,54 @@
             </section>
             <section id="step4" class="mt-3 step d-none">
                 <a href="#?" onclick="Step3()"><i class="fa fa-long-arrow-left pr-2"></i>Previous Step</a><hr />
-                <h5 class="text-muted py-3"><span class="text-primary">Step 4</span> - Review Launch Details</h5>
+                <h5 class="text-muted py-3"><span class="text-primary">Step 4</span> - Review and Set Follow Up</h5>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="comment">Follow Up Date:</label>
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row p-0">
+                    <div class="col-4">
+                        <button class="btn btn-block btn-primary" onclick="applycommenttoall()">Set Follow up dates for selected</button>
+                    </div>
+                </div>
+
+                <hr />
+                <div class="table-responsive">
+                    <table id="table_step4" class="table table-bordered datatable">
+                        <thead class="thead-light">
+                            <tr>
+                                <th width="50"><button class="btn btn-primary btn-sm">Select All</button></th>
+                                <th>Item #</th>
+                                <th>Item Description</th>
+                                <th>Unit Size</th>
+                                <th>Status</th>
+                                <th>Follow Up Date</th>
+                                <th>Comment</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="#?" class="group-item"><i class="fa fa-circle-o"></i></a></td>
+                                <td>90001</td>
+                                <td>Kikkoman Tempura Batter Mix</td>
+                                <td>255 GR</td>
+                                <td><i class="fa fa-square text-primary"></i> Pending</td>
+                                <td><input type="date" class="form-control"></td>
+                                <td><textarea class="form-control bg-white" rows="2" readonly >Test Comment</textarea></td>
+                                <td><button class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#modalDetails">Details</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
 
-
-                <table id="table_groupitems" class="table table-bordered datatable">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Item #</th>
-                            <th>Item Description</th>
-                            <th>Unit Size</th>
-                            <th>Status</th>
-                            <th>Follow Up Date</th>
-                            <th>Comment</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>90001</td>
-                            <td>Kikkoman Tempura Batter Mix</td>
-                            <td>255 GR</td>
-                            <td>Not VOR</td>
-                            <td>01/01/2021</td>
-                            <td>Test Comment</td>
-                            <td><button class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#modalDetails">Details</button></td>
-                        </tr>
-
-                    </tbody>
-                </table>
                 <div class="row pt-4">
-                    <a href="@Url.Action("Launchpad","Home")" class="btn btn-lg btn-outline-success btn-block">Save and Exit</a>
+                    <a href="@Url.Action("Launchpad", null, new { view = "cdm", controller = "Home" }, Request.Url.Scheme)" class="btn btn-lg btn-outline-success btn-block">Save and Exit</a>
                 </div>
 
                 <!--Modals-->
@@ -597,13 +618,19 @@
                 "columnDefs": [
                     { "orderable": false, "targets": 0 }
                 ],
-                "order": [[1, "desc"]],
+                "order": [[1, "asc"]],
             });
             $('#table_groupitems').DataTable({
                 "columnDefs": [
-                    { "orderable": false, "targets": [0,4,5,6] }
+                    { "orderable": false, "targets": [0,6,7,8] }
                 ],
-                "order": [[1, "desc"]],
+                "order": [[1, "asc"]],
+            });
+            $('#table_step4').DataTable({
+                "columnDefs": [
+                    { "orderable": false, "targets": [0, 5, 7] }
+                ],
+                "order": [[1, "asc"]],
             });
             $('[data-toggle="tooltip"]').tooltip();
             $("#btn-programDeselectAll").hide();
@@ -612,6 +639,10 @@
         function selectAll() {
             $('#selitemGroups option').attr('selected', true);
             $("#selitemGroups").data("selectpicker").refresh()
+        }
+        function showbrandtable() {
+            $("#brandtable").show();
+            $("#step1final").show();
         }
     </script>
 }
